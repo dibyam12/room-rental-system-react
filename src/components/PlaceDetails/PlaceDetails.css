@@ -1,0 +1,46 @@
+.image-slider .slick-next {
+  right: 10px;
+  color: rgb(8 145 178);
+}
+.image-slider .slick-prev {
+  left: 10px;
+  color: rgb(8 145 178);
+}
+
+.image-slider {
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.slick-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-slider img {
+  width: 75%;
+  margin: auto;
+  height: auto;
+  object-fit: cover;
+}
+
+.details .call-message .call .icon,
+.details .call-message .message .icon {
+  font-size: 1.5rem;
+  /* You can adjust the size as needed */
+}
+
+.details .call-message :hover {
+  cursor: pointer;
+}
+/* To ensure consistency, also apply styles to the container */
+.details .call-message .call,
+.details .call-message .message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem; /* Adjust this size as needed */
+}
