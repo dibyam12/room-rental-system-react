@@ -5,6 +5,7 @@ import noImage from "../../assets/no_image.png";
 import { IoCall } from "react-icons/io5";
 import { MdMessage } from "react-icons/md";
 import axios from "axios"; // Ensure axios or a similar library is installed
+import { Link } from "react-router-dom";
 
 const PlaceDetails = (props) => {
   const [images, setImages] = useState([]);
@@ -71,10 +72,14 @@ const PlaceDetails = (props) => {
             <IoCall className="icon w-full" />
             {/* <a href={`tel:+977${}`}></a> */}
           </div>
-          <div className="message flex justify-center rounded-r-lg hover:bg-gray-100  outline w-1/2 p-3">
-            {" "}
-            <MdMessage className="icon w-full" />
-          </div>
+          <Link
+            to="/message"
+            className="message flex justify-center rounded-r-lg hover:bg-gray-100  outline w-1/2 p-3"
+          >
+            <div className="w-full">
+              <MdMessage className="icon w-full" />
+            </div>
+          </Link>
         </div>
         <h2 className="font-semibold">ROOM DETAILS:</h2>
       </div>
