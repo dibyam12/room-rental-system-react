@@ -6,7 +6,7 @@ import { IoCall } from "react-icons/io5";
 import "./loginRegister.css";
 import { useState, useContext } from "react";
 // import { AuthContext } from "../context/AuthContext";
-import { AuthContext } from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 const LoginRegister = () => {
   const [action, setAction] = useState("");
