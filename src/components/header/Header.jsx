@@ -12,11 +12,11 @@ const Header = () => {
     <>
       <nav className="bg-cyan-600 text-white p-5 flex flex-row justify-between items-center">
         <div className="logo  font-extrabold ">
-          <Link to="/">
+          <Link to="/home">
             <h2>Room Rental System</h2>
           </Link>
         </div>
-        <div className="contents   ">
+        <div className="contents">
           {/* <Autocomplete className="z-100"> */}
           {/* <GooglePlacesAutocomplete
               apiKey="AIzaSyDtHerYTUch_a9ouhSYDO7hb1Rcga2Zs8Q"
@@ -65,7 +65,7 @@ const Header = () => {
                 Add Rent
               </button>
             </Link>
-            <Link to="/login">
+            <Link to="/">
               <button className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                 SignUp
               </button>
