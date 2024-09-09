@@ -5,9 +5,7 @@ const RoomDetails = () => {
   return (
     <>
       <div className="container1 flex flex-col h-screen">
-        <div className="header w-full">
-          <Header />
-        </div>
+        
         <div className=" w-full h-full ">
           <PlaceDetails />
         </div>
