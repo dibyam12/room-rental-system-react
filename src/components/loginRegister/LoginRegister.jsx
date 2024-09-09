@@ -4,11 +4,14 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { IoCall } from "react-icons/io5";
 import "./loginRegister.css";
-import { useState, useContext } from "react";
+import {useState, useContext, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../../actions/userActions.jsx";
 // import { AuthContext } from "../context/AuthContext";
-import AuthContext from "../../context/AuthContext";
+// import AuthContext from "../../context/AuthContext";
 
 const LoginRegister = () => {
+  const dispatch = useDispatch()
   const [action, setAction] = useState("");
 
   const registerLink = () => {
@@ -30,12 +33,25 @@ const LoginRegister = () => {
     password2: "",
     role: "",
   });
+  
+  const userLogin = useSelector(state=> state.userLogin)
+  const {loading, userInfo, error} = userLogin
+  
+  useEffect(() => {
+    if (userInfo) {
+      registerLink()
+      
+    }
+      }, [userInfo]
+  )
 
-  const { loginUser, registerUser } = useContext(AuthContext);
+  // const { loginUser, registerUser } = useContext(AuthContext);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    loginUser(loginUsername, loginPassword);
+    // loginUser(loginUsername, loginPassword);
+    dispatch(login(loginUsername,loginPassword))
+    console.log('submitted')
   };
 
   const handleRegisterSubmit = (e) => {
@@ -191,7 +207,7 @@ const LoginRegister = () => {
                   onChange={handleChange}
                   required
                 >
-                  <option value="Laandlord">Landlord</option>
+                  <option value="Landlord">Landlord</option>
                   <option value="Tenant">Tenant</option>
                 </select>
               </div>

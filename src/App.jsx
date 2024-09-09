@@ -2,6 +2,8 @@ import "./App.css";
 import "../node_modules/leaflet/dist/leaflet.css";
 
 import "../node_modules/leaflet/dist/leaflet";
+import store from "./store.jsx";
+import {Provider} from 'react-redux'
 
 // import {
 //   // BrowserRouter,
@@ -35,10 +37,13 @@ function App() {
   //   },
   // ]);
   return (
-    <>
+   <>
+        <Provider store={store}>
+        
       <Routing />
-      {/* <RouterProvider router={router} /> */}
-    </>
+        </Provider>
+   </>
+   
   );
 }
 
