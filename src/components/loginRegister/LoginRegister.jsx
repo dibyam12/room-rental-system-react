@@ -4,16 +4,28 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { IoCall } from "react-icons/io5";
 import "./loginRegister.css";
+<<<<<<< HEAD
 import {useState, useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../actions/userActions.jsx";
 import {useNavigate} from "react-router-dom";
+=======
+import { useState, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../actions/userActions.jsx";
+import { useNavigate } from "react-router-dom";
+>>>>>>> a9c4b6314af6495293f1cced5ed9d19853357b50
 // import { AuthContext } from "../context/AuthContext";
 // import AuthContext from "../../context/AuthContext";
 
 const LoginRegister = () => {
+<<<<<<< HEAD
   const dispatch = useDispatch()
   const navigate = useNavigate()
+=======
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+>>>>>>> a9c4b6314af6495293f1cced5ed9d19853357b50
   const [action, setAction] = useState("");
 
   const registerLink = () => {
@@ -35,26 +47,34 @@ const LoginRegister = () => {
     password2: "",
     role: "",
   });
-  
-  const userLogin = useSelector(state=> state.userLogin)
-  const {loading, userInfo, error} = userLogin
-  
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, userInfo, error } = userLogin;
+
   useEffect(() => {
     if (userInfo) {
+
       navigate('/')
       
+
+      registerLink();
+
     }
-      }, [userInfo]
-  )
+  }, [userInfo]);
 
   // const { loginUser, registerUser } = useContext(AuthContext);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     // loginUser(loginUsername, loginPassword);
+<<<<<<< HEAD
     dispatch(login(loginUsername,loginPassword))
     // navigate('/')
     
+
+    dispatch(login(loginUsername, loginPassword));
+    console.log("submitted");
+
   };
 
   const handleRegisterSubmit = (e) => {
