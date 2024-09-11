@@ -8,6 +8,7 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
 const store = configureStore({
   reducer: {
     userLogin: userLoginReducer,
+    
   },
 });
 

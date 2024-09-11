@@ -44,11 +44,13 @@ const Header = () => {
                 Message
               </button>
             </Link>
-            <Link to="/add-room">
+            {userInfo?.profile?.userType === 'Landlord' && (<Link to="/add-room">
               <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                 Add Rent
               </button>
-            </Link>
+              </Link>)}
+          
+            
             {userInfo ? (
                 <Link to="/" >
               <button onClick={logoutHandler} className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
@@ -56,11 +58,11 @@ const Header = () => {
               </button>
             </Link>
             
-            ) : <Link to="/login">
+            ) : (<Link to="/login">
               <button className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                 Login
               </button>
-            </Link>}
+            </Link>)}
             
           </div>
         </div>
