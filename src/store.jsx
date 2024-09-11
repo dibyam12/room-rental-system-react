@@ -1,18 +1,14 @@
-import {configureStore} from "@reduxjs/toolkit";
-import {userLoginReducer} from "./reducers/userReducers";
+import { userLoginReducer } from "./reducers/userReducers";
+import { configureStore } from "@reduxjs/toolkit";
 
-const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
-
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
 
 const store = configureStore({
-    reducer: {
-        userLogin: userLoginReducer,
-    }
-})
-
-
+  reducer: {
+    userLogin: userLoginReducer,
+  },
+});
 
 export default store;
-
-
-

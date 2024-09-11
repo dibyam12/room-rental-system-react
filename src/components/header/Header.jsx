@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 
 import "./Header.css";
 // import { Autocomplete } from "@react-google-maps/api";
-import {Link, Outlet} from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 const Header = () => {
   // const [value, setValue] = useState(null);
   return (
