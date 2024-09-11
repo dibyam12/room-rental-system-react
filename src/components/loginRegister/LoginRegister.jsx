@@ -6,7 +6,7 @@ import { IoCall } from "react-icons/io5";
 import "./loginRegister.css";
 import {useState, useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../actions/userActions.jsx";
+import {login, register} from "../../actions/userActions.jsx";
 import {useNavigate} from "react-router-dom";
 // import { AuthContext } from "../context/AuthContext";
 // import AuthContext from "../../context/AuthContext";
@@ -28,17 +28,19 @@ const LoginRegister = () => {
   // const [action, setAction] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [registerData, setRegisterData] = useState({
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    username: "",
-    password: "",
-    password2: "",
-    role: "",
-  });
-
+  
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState()
+  const [phone_number, setPhone_number] = useState()
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  const [confirmPassword, setConfirmPassword] = useState()
+  const [userType, setUserType] = useState()
+  const [message, setMessage] = useState()
+  
   const userLogin = useSelector((state) => state.userLogin);
+  const userRegister = useSelector((state) => state.userRegister)
+  const {error:errorRegister, loading:loadingRegister ,userInfo:userInfoRegister} = userRegister
   const { loading, userInfo, error } = userLogin;
 
   useEffect(() => {
@@ -69,12 +71,13 @@ const LoginRegister = () => {
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
-    registerUser(
-      registerData.email,
-      registerData.username,
-      registerData.password,
-      registerData.password2
-    );
+    if (password != confirmPassword) {
+      setMessage("Passwords do not match")
+    } else {
+      dispatch(register(email,password,username,name,phone_number,userType))
+      navigate('/')
+    }
+    
   };
 
   const handleChange = (e) => {
@@ -146,8 +149,8 @@ const LoginRegister = () => {
                   name="fullName"
                   placeholder="Full Name"
                   className="form-input px-4 py-3 rounded-full"
-                  value={registerData.fullName}
-                  onChange={handleChange}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="input-box">
@@ -158,8 +161,8 @@ const LoginRegister = () => {
                   name="email"
                   placeholder="E-mail"
                   className="form-input px-4 py-3 rounded-full"
-                  value={registerData.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="input-box">
@@ -170,8 +173,8 @@ const LoginRegister = () => {
                   name="phoneNumber"
                   placeholder="Phone Number"
                   className="form-input px-4 py-3 rounded-full"
-                  value={registerData.phoneNumber}
-                  onChange={handleChange}
+                  value={phone_number}
+                  onChange={(e) => setPhone_number(e.target.value)}
                 />
               </div>
               <div className="input-box">
@@ -182,8 +185,8 @@ const LoginRegister = () => {
                   name="username"
                   placeholder="Username"
                   className="form-input px-4 py-3 rounded-full"
-                  value={registerData.username}
-                  onChange={handleChange}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="input-box">
@@ -194,8 +197,8 @@ const LoginRegister = () => {
                   name="password"
                   placeholder="Password"
                   className="form-input px-4 py-3 rounded-full"
-                  value={registerData.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="input-box">
@@ -206,8 +209,8 @@ const LoginRegister = () => {
                   name="password2"
                   placeholder="Confirm Password"
                   className="form-input px-4 py-3 rounded-full"
-                  value={registerData.password2}
-                  onChange={handleChange}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
               <div className="landlord-tenant">
@@ -216,8 +219,8 @@ const LoginRegister = () => {
                 <select
                   id="details"
                   name="role"
-                  value={registerData.role}
-                  onChange={handleChange}
+                  value={userType}
+                  onChange={(e) => setUserType(e.target.value)}
                   required
                 >
                   <option value="Landlord">Landlord</option>

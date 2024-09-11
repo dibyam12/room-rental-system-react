@@ -1,4 +1,4 @@
-import { userLoginReducer } from "./reducers/userReducers";
+import {userLoginReducer, userRegisterReducer} from "./reducers/userReducers";
 import { configureStore } from "@reduxjs/toolkit";
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -8,7 +8,7 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
 const store = configureStore({
   reducer: {
     userLogin: userLoginReducer,
-    
+    userRegister: userRegisterReducer,
   },
 });
 
