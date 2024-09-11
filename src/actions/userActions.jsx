@@ -68,7 +68,6 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({
@@ -76,12 +75,6 @@ export const logout = () => (dispatch) => {
   })
 
 }
-
-
-
-
-
-
 
 
 export const register = (email, password,username,name,phone_number,userType) => async (dispatch) => {
@@ -97,7 +90,7 @@ export const register = (email, password,username,name,phone_number,userType) =>
     };
     const { data } = await axios.post(
       `${backendUrl}/user/register/`,
-      { "name": name, 'password': password, 'email':email,'username':username,'phone_number':phone_number,'userType':userType },
+      { 'name': name, 'password': password, 'email':email,'username':username,'phone_number':phone_number,'userType':userType },
       config
     );
 
@@ -105,26 +98,24 @@ export const register = (email, password,username,name,phone_number,userType) =>
       type: USER_REGISTER_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("userInfo", JSON.stringify(data));
-
-    swal.fire({
-      title: "Login Successful",
-      icon: "success",
-      toast: true,
-      timer: 3000,
-      position: "top-right",
-      timerProgressBar: true,
-      showConfirmButton: false,
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data,
     });
     
+    localStorage.setItem("userInfo", JSON.stringify(data));
+
+    g
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
-      payload: error.message,
+      payload: error.response && error.response.data
+        ? error.response.data.detail || error.message
+        : error.message,
     });
 
     swal.fire({
-      title: "Login Failed",
+      title: "Register Failed",
       text:
         error.response && error.response.data.detail
           ? error.response.data.detail

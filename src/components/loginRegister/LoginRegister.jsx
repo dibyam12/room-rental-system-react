@@ -35,7 +35,7 @@ const LoginRegister = () => {
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   const [confirmPassword, setConfirmPassword] = useState()
-  const [userType, setUserType] = useState()
+  const [userType, setUserType] = useState('Landlord')
   const [message, setMessage] = useState()
   
   const userLogin = useSelector((state) => state.userLogin);
@@ -74,6 +74,7 @@ const LoginRegister = () => {
     if (password != confirmPassword) {
       setMessage("Passwords do not match")
     } else {
+      console.log(email,password,username,name,phone_number,userType)
       dispatch(register(email,password,username,name,phone_number,userType))
       navigate('/')
     }
