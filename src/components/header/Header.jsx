@@ -49,8 +49,12 @@ const Header = () => {
                 Add Rent
               </button>
               </Link>)}
-          
             
+            {userInfo && (<Link to="/profile" >
+              <button className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                Profile
+              </button>
+            </Link>)}
             {userInfo ? (
                 <Link to="/" >
               <button onClick={logoutHandler} className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
