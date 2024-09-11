@@ -7,11 +7,13 @@ import "./loginRegister.css";
 import {useState, useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../actions/userActions.jsx";
+import {useNavigate} from "react-router-dom";
 // import { AuthContext } from "../context/AuthContext";
 // import AuthContext from "../../context/AuthContext";
 
 const LoginRegister = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [action, setAction] = useState("");
 
   const registerLink = () => {
@@ -39,7 +41,7 @@ const LoginRegister = () => {
   
   useEffect(() => {
     if (userInfo) {
-      registerLink()
+      navigate('/')
       
     }
       }, [userInfo]
@@ -51,7 +53,8 @@ const LoginRegister = () => {
     e.preventDefault();
     // loginUser(loginUsername, loginPassword);
     dispatch(login(loginUsername,loginPassword))
-    console.log('submitted')
+    // navigate('/')
+    
   };
 
   const handleRegisterSubmit = (e) => {
