@@ -5,8 +5,17 @@ import { FaSearch } from "react-icons/fa";
 
 import "./Header.css";
 // import { Autocomplete } from "@react-google-maps/api";
-import { Link, Outlet } from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../actions/userActions.jsx";
 const Header = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const {userInfo} = userLogin;
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
   // const [value, setValue] = useState(null);
   return (
     <>
@@ -17,32 +26,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="contents">
-          {/* <Autocomplete className="z-100"> */}
-          {/* <GooglePlacesAutocomplete
-              apiKey="AIzaSyDtHerYTUch_a9ouhSYDO7hb1Rcga2Zs8Q"
-              selectProps={{
-                value,
-                onChange: setValue,
-                placeholder: "Search Area",
-                isClearable: true,
-                className:
-                  "searchBar z-666 w-96 p-3 text-black  focus:outline-none rounded-full ",
-                styles: {
-                  input: (provided) => ({
-                    ...provided,
-                    color: "black",
-                  }),
-                  option: (provided) => ({
-                    ...provided,
-                    color: "black",
-                  }),
-                  singleValue: (provided) => ({
-                    ...provided,
-                    color: "black",
-                  }),
-                },
-              }}
-            /> */}
+          
           <div className="search-bar inline-flex items-center">
             <input
               type="text"
@@ -65,11 +49,19 @@ const Header = () => {
                 Add Rent
               </button>
             </Link>
-            <Link to="/">
-              <button className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                SignUp
+            {userInfo ? (
+                <Link to="/" >
+              <button onClick={logoutHandler} className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                Logout
               </button>
             </Link>
+            
+            ) : <Link to="/login">
+              <button className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                Login
+              </button>
+            </Link>}
+            
           </div>
         </div>
       </nav>
