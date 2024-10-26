@@ -15,10 +15,7 @@ const List = () => {
         Filter <FaFilter />
       </div>
       <div className="room-lists">
-        <div
-          className="card flex outline rounded-md h-1/5 w-full m-2 
-      "
-        >
+        <div className="card flex outline rounded-md h-1/5 w-full m-2">
           <div className="image w-5/12 bg-black">
             <img src="" alt="image" />
           </div>

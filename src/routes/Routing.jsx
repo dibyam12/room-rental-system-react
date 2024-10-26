@@ -15,6 +15,7 @@ import Home from "../pages/Home";
 import PrivateRoute from "../context/PrivateRoute";
 import Header from "../components/header/Header.jsx";
 import Profile from "../components/profile/Profile.jsx";
+import Admin from "../pages/admin/Admin.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -54,11 +55,13 @@ const router = createBrowserRouter([
           // </PrivateRoute>
         ),
       },
-        {
+      {
         path: "/profile",
-        element: (
-          <Profile />
-        ),
+        element: <Profile />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
     ],
   },
