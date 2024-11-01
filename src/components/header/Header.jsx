@@ -61,6 +61,7 @@ const Header = () => {
               </Link>
             )}
             {userInfo ? (
+<<<<<<< HEAD
               <Link to="/">
                 <button
                   onClick={logoutHandler}
@@ -76,6 +77,21 @@ const Header = () => {
                 </button>
               </Link>
             )}
+=======
+                <Link to="/" >
+              <button onClick={logoutHandler} className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                Logout
+              </button>
+            </Link>
+            
+            ) : (<Link to="/login">
+              <button className="h-10 px-6 font-semibold rounded-md border text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                Login
+              </button>
+            </Link>)}
+            
+          <Link to="/register-verify" className="pop-up">Unverified</Link>
+>>>>>>> ca2074b (verify register)
           </div>
         </div>
       </nav>

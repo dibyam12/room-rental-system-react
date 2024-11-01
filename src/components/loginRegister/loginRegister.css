@@ -11,7 +11,7 @@
   display: flex;
   position: relative;
   align-items: center;
-  overflow: hidden;
+  overflow: auto;
 }
 .background.active {
   margin: 50px;

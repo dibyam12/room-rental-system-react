@@ -15,7 +15,10 @@ import Home from "../pages/Home";
 import PrivateRoute from "../context/PrivateRoute";
 import Header from "../components/header/Header.jsx";
 import Profile from "../components/profile/Profile.jsx";
+
 import Admin from "../pages/admin/Admin.jsx";
+
+import Registerverify from "../components/registerverify/Registerverify.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -62,6 +65,13 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <Admin />,
+      },
+        
+        {
+        path: "/register-verify",
+        element: (
+          <RegisterLogin />
+        ),
       },
     ],
   },
