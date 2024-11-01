@@ -36,13 +36,8 @@ const RegisterVerify = () => {
     if (images.image2) formData.append('image2', images.image2);
     if (images.image3) formData.append('image3', images.image3);
 
-    // Log FormData for debugging
-    console.log('FormData contents:');
-    for (let [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-    }
+   
 
-    // Dispatch the form data as a payload
     dispatch(verifyRegister(formData));
     console.log(formData)
 };
