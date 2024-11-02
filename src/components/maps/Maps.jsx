@@ -1,15 +1,17 @@
-import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
+// src/Maps.jsx
+
+import { MapContainer, Marker, TileLayer, Popup, useMapEvents } from "react-leaflet";
 import { useState, useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"; // Import useDispatch and useSelector from react-redux
+import { useDispatch, useSelector } from "react-redux";
 import "./Maps.css";
 import MapCard from "../mapCard/MapCard";
 
 const Maps = () => {
   const dispatch = useDispatch();
-  const coordinates = useSelector(state => state.coordinates); // Access the coordinates from Redux state
+  const coordinates = useSelector(state => state.coordinates); // Access coordinates from Redux state
   const { longitude, latitude } = coordinates;
 
-  const defaultPosition = { lat: 27.698256, lng: 85.320044 }; // Kathmandu Valley coordinates
+  const defaultPosition = { lat: 27.698256, lng: 85.320044 }; // Default Kathmandu coordinates
   const [position, setPosition] = useState(defaultPosition);
   const [zoom, setZoom] = useState(15);
   const [haveUserLocation, setHaveUserLocation] = useState(false);
@@ -30,7 +32,7 @@ const Maps = () => {
   // Callback function to handle geolocation errors
   const useipApi = useCallback(() => {
     console.error("Error getting location from the device, using IP-based location as fallback.");
-    fetch("https://ipapi.co/json/") // Changed to HTTPS
+    fetch("https://ipapi.co/json/")
       .then((res) => res.json())
       .then((location) => {
         setPosition({
@@ -52,7 +54,7 @@ const Maps = () => {
       navigator.geolocation.getCurrentPosition(
         handleGeolocationSuccess,
         useipApi,
-        { timeout: 10000 } // Optional: adds timeout for geolocation
+        { timeout: 10000 }
       );
     } else {
       setLoading(false);
@@ -63,10 +65,23 @@ const Maps = () => {
   useEffect(() => {
     if (longitude !== null && latitude !== null) {
       setPosition({ lat: latitude, lng: longitude });
-      setHaveUserLocation(true); // Set this to true to show the marker
-      setZoom(15); // Optionally adjust zoom level
+      setHaveUserLocation(true);
+      setZoom(15);
     }
-  }, [longitude, latitude]); // Run this effect whenever longitude or latitude changes
+  }, [longitude, latitude]);
+
+  // Custom component to handle map click events and update marker position
+  function LocationMarker() {
+    useMapEvents({
+      click(e) {
+        const { lat, lng } = e.latlng;
+        console.log(`Clicked coordinates: Latitude: ${lat}, Longitude: ${lng}`);
+        setPosition({ lat, lng });
+        setHaveUserLocation(true);
+      },
+    });
+    return null;
+  }
 
   return (
     <>
@@ -80,15 +95,16 @@ const Maps = () => {
           center={position}
           zoom={zoom}
           scrollWheelZoom={true}
+          style={{ height: "100vh", width: "100%" }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {/* Render the marker only when we have user location or new coordinates */}
+          <LocationMarker /> {/* Custom component to handle clicks and log coordinates */}
           {haveUserLocation && (
-            <Marker position={position} draggable={true}>
-              <Popup className="text-white w-40 h-28">
+            <Marker position={position}>
+              <Popup>
                 <MapCard />
               </Popup>
             </Marker>
