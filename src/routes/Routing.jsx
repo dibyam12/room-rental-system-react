@@ -19,6 +19,7 @@ import Profile from "../components/profile/Profile.jsx";
 import Admin from "../pages/admin/Admin.jsx";
 
 import Registerverify from "../components/registerverify/Registerverify.jsx";
+import MyRooms from "../components/myrooms/MyRooms.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -35,7 +36,18 @@ const router = createBrowserRouter([
         element: <RegisterLogin />,
       },
       {
-        path: "/room-details/:id",
+        path: "/myrooms",
+        element: (
+          // <PrivateRoute>
+          <MyRooms />
+          // </PrivateRoute>
+        ),
+      }
+      
+      ,
+      
+      {
+        path: "/room-details",
         element: (
           // <PrivateRoute>
           <RoomDetails />

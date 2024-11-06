@@ -1,7 +1,9 @@
 import {
+    ADD_ROOM_FAIL,
+    ADD_ROOM_REQUEST, ADD_ROOM_SUCCESS,
     ROOM_DETAIL_FAIL,
     ROOM_DETAIL_REQUEST,
-    ROOM_DETAIL_SUCCESS,
+    ROOM_DETAIL_SUCCESS, ROOM_DETAILS_FAIL, ROOM_DETAILS_REQUEST, ROOM_DETAILS_SUCCESS,
 } from "../constants/userConstants.jsx";
 
 import axios from "axios";
@@ -29,6 +31,41 @@ export const roomDetailReducer = (state = initialState, action) => {
     }
 
 }
+export const roomDetailsReducer = (state = initialState, action) => {
+    
+    switch (action.type) {
+        case ROOM_DETAILS_REQUEST:
+            return { ...state, loading: true };
+        case ROOM_DETAILS_SUCCESS:
+            return { ...state, loading: false, rooms: action.payload };
+        case ROOM_DETAILS_FAIL:
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+
+}
+
+
+
+
+export const addRoomReducer = (state = initialState, action) => {
+    
+    switch (action.type) {
+        case ADD_ROOM_REQUEST:
+            return { ...state, loading: true };
+        case ADD_ROOM_SUCCESS:
+            return { ...state, loading: false, rooms: action.payload };
+        case ADD_ROOM_FAIL:
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+
+}
+
+
+
 
 
 import {SET_COORDINATES} from "../actions/roomActions.jsx";
