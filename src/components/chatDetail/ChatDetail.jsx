@@ -58,7 +58,7 @@ const ChatDetail = ({ selectedChat, user_id }) => {
     formdata.append("is_read", false);
 
     axios
-      .post(`${backendUrl}/send-messages/`, formdata)
+      .post(`${backendUrl}/sendMessages/`, formdata)
       .then(() => {
         document.getElementById("text-input").value = "";
         setNewMessage(""); // Clear message after sending
