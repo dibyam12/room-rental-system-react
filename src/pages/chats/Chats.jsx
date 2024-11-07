@@ -11,9 +11,12 @@ const Chats = () => {
   const [messages, setMessages] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null); // Track selected chat
 
-  const token = localStorage.getItem("userInfo");
-  const decoded = jwtDecode(token);
-  const user_id = decoded.id;
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  // console.log(userInfo);
+  const decode = jwtDecode(userInfo.token);
+  // console.log(decode);
+  const user_id = decode.user_id;
+  console.log(user_id);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -37,8 +40,8 @@ const Chats = () => {
               user_id={user_id}
             />
           </div>
-          <div className=" border-l-2 ">
-            <ChatDetail />
+          <div className=" border-l-2 w-full ">
+            <ChatDetail selectedChat={selectedChat} user_id={user_id} />
           </div>
         </div>
       </div>
