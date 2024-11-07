@@ -15,7 +15,11 @@ import Home from "../pages/Home";
 import PrivateRoute from "../context/PrivateRoute";
 import Header from "../components/header/Header.jsx";
 import Profile from "../components/profile/Profile.jsx";
+
 import Admin from "../pages/admin/Admin.jsx";
+
+import Registerverify from "../components/registerverify/Registerverify.jsx";
+import MyRooms from "../components/myrooms/MyRooms.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -32,7 +36,18 @@ const router = createBrowserRouter([
         element: <RegisterLogin />,
       },
       {
-        path: "/room-details/:id",
+        path: "/myrooms",
+        element: (
+          // <PrivateRoute>
+          <MyRooms />
+          // </PrivateRoute>
+        ),
+      }
+      
+      ,
+      
+      {
+        path: "/room-details",
         element: (
           // <PrivateRoute>
           <RoomDetails />
@@ -62,6 +77,13 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <Admin />,
+      },
+        
+        {
+        path: "/register-verify",
+        element: (
+          <RegisterLogin />
+        ),
       },
     ],
   },

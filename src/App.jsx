@@ -1,5 +1,8 @@
 import "./App.css";
 import "../node_modules/leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
+
+
 
 import "../node_modules/leaflet/dist/leaflet";
 import store from "./store.jsx";
