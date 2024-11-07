@@ -20,6 +20,7 @@ import Admin from "../pages/admin/Admin.jsx";
 
 import Registerverify from "../components/registerverify/Registerverify.jsx";
 import MyRooms from "../components/myrooms/MyRooms.jsx";
+import Users from "../components/users/Users.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -62,6 +63,15 @@ const router = createBrowserRouter([
           // </PrivateRoute>
         ),
       },
+        {
+        path: "/user/:userId",
+        element: (
+          // <PrivateRoute>
+          <Users />
+          // </PrivateRoute>
+        ),
+      }
+        ,
       {
         path: "/message",
         element: (
