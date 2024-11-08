@@ -11,7 +11,19 @@ import {
     
     VERIFY_REGISTER_SUCCESS,
     VERIFY_REGISTER_REQUEST,
-    VERIFY_REGISTER_FAIL, ADD_ROOM_REQUEST, ADD_ROOM_SUCCESS, ADD_ROOM_FAIL
+    VERIFY_REGISTER_FAIL,
+    ADD_ROOM_REQUEST,
+    ADD_ROOM_SUCCESS,
+    ADD_ROOM_FAIL,
+    ROOM_DETAIL_REQUEST,
+    ROOM_DETAIL_SUCCESS,
+    ROOM_DETAIL_FAIL,
+    USER_LIST_REQUEST,
+    USER_LIST_SUCCESS,
+    USER_LIST_FAIL,
+    ROOM_DETAILS_REQUEST,
+    ROOM_DETAILS_SUCCESS,
+    ROOM_DETAILS_FAIL
     
 } from "../constants/userConstants";
 import axios from "axios";
@@ -199,3 +211,46 @@ export const addRooms = (formDatas) => async (dispatch) => {
         });
     }
 };
+
+
+export const fetchUserList = () => async (dispatch) => {
+    try {
+        dispatch({ type: USER_LIST_REQUEST });
+
+       
+        const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
+
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        };
+
+        
+        const response = await axios.get(`${backendUrl}/user/list/`, config);
+        // console.log(response.data);
+
+        dispatch({ type: USER_LIST_SUCCESS, payload: response.data });
+    } catch (error) {
+        dispatch({
+            type: USER_LIST_FAIL,
+            payload:
+                error.response && error.response.data
+                    ? error.response.data.detail || error.message
+                    : error.message,
+        });
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+

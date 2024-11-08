@@ -38,9 +38,9 @@ const Header = () => {
           {/* </Autocomplete> */}
 
           <div className="buttons">
-            {console.log(userInfo?.profile?.userType)}
+            {console.log(userInfo)}
             
-            {userInfo?.profile?.userType === 'Landlord' && (
+            {userInfo?.profile?.userType === 'Landlord' || userInfo?.profile?.userType === 'Admin' && (
               <Link to="/myrooms">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   My Rooms
@@ -55,7 +55,7 @@ const Header = () => {
                 </button>
               </Link>
             )}
-            {userInfo?.profile?.userType === "Landlord" && (
+            {userInfo?.profile?.userType === "Landlord" || userInfo?.profile?.userType === 'Admin' && (
               <Link to="/add-room">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Add Rent
