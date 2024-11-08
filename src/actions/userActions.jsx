@@ -23,7 +23,12 @@ import {
     USER_LIST_FAIL,
     ROOM_DETAILS_REQUEST,
     ROOM_DETAILS_SUCCESS,
-    ROOM_DETAILS_FAIL
+    ROOM_DETAILS_FAIL,
+    USER_PROFILE_SUCCESS,
+    USER_PROFILE_REQUEST,
+    USER_PROFILE_FAIL,
+    REGISTRATION_DETAIL_REQUEST,
+    REGISTRATION_DETAIL_SUCCESS, REGISTRATION_DETAIL_FAIL
     
 } from "../constants/userConstants";
 import axios from "axios";
@@ -244,9 +249,66 @@ export const fetchUserList = () => async (dispatch) => {
 
 
 
+export const fetchUserProfile = () => async (dispatch) => {
+    try {
+        dispatch({ type: USER_PROFILE_REQUEST });
+
+       
+        const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
+
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        };
+
+        
+        const response = await axios.get(`${backendUrl}/user/profile/`, config);
+        // console.log(response.data);
+
+        dispatch({ type: USER_PROFILE_SUCCESS, payload: response.data });
+    } catch (error) {
+        dispatch({
+            type: USER_PROFILE_FAIL,
+            payload:
+                error.response && error.response.data
+                    ? error.response.data.detail || error.message
+                    : error.message,
+        });
+    }
+};
 
 
 
+
+export const fetchRegistrationDetail = () => async (dispatch) => {
+    try {
+        dispatch({ type: REGISTRATION_DETAIL_REQUEST });
+
+       
+        const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
+
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        };
+
+        
+        const response = await axios.get(`${backendUrl}/registrationdetails/`, config);
+        // console.log(response.data);
+
+        dispatch({ type: REGISTRATION_DETAIL_SUCCESS, payload: response.data });
+    } catch (error) {
+        dispatch({
+            type: REGISTRATION_DETAIL_FAIL,
+            payload:
+                error.response && error.response.data
+                    ? error.response.data.detail || error.message
+                    : error.message,
+        });
+    }
+};
 
 
 

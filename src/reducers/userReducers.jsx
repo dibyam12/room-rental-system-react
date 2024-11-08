@@ -5,7 +5,12 @@ import {
     USER_LOGOUT,
     USER_REGISTER_SUCCESS,
     USER_REGISTER_FAIL,
-    USER_REGISTER_REQUEST, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_LIST_FAIL
+    USER_REGISTER_REQUEST,
+    USER_LIST_REQUEST,
+    USER_LIST_SUCCESS,
+    USER_LIST_FAIL,
+    REGISTRATION_DETAIL_REQUEST,
+    REGISTRATION_DETAIL_SUCCESS, REGISTRATION_DETAIL_FAIL
 } from '../constants/userConstants'
 // import {createSlice} from "@reduxjs/toolkit";
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
@@ -60,6 +65,51 @@ export const userListReducer = (state = initialStatee, action) => {
         case USER_LIST_SUCCESS:
             return { ...state, loading: false, users: action.payload };
         case USER_LIST_FAIL:
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+
+}
+
+
+
+
+const initial = {
+    user: [],
+    loading: false,
+    error: null,
+};
+export const userProfileReducer = (state = initial, action) => {
+    
+    switch (action.type) {
+        case USER_LIST_REQUEST:
+            return { ...state, loading: true };
+        case USER_LIST_SUCCESS:
+            return { ...state, loading: false, user: action.payload };
+        case USER_LIST_FAIL:
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+
+}
+
+
+
+const initialRegistration = {
+    user: [],
+    loading: false,
+    error: null,
+};
+export const registrationDetailsReducer = (state = initialRegistration, action) => {
+    
+    switch (action.type) {
+        case REGISTRATION_DETAIL_REQUEST:
+            return { ...state, loading: true };
+        case REGISTRATION_DETAIL_SUCCESS:
+            return { ...state, loading: false, user: action.payload };
+        case REGISTRATION_DETAIL_FAIL:
             return { ...state, loading: false, error: action.payload };
         default:
             return state;
