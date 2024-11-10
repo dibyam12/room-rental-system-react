@@ -1,4 +1,10 @@
-import {userListReducer, userLoginReducer, userRegisterReducer} from "./reducers/userReducers";
+import {
+  registrationDetailsReducer,
+  userListReducer,
+  userLoginReducer,
+  userProfileReducer,
+  userRegisterReducer
+} from "./reducers/userReducers";
 import { configureStore } from "@reduxjs/toolkit";
 import coordinateReducer, {addRoomReducer, roomDetailReducer, roomDetailsReducer} from "./reducers/roomReducers.jsx";
 // import {userListReducer} from "./actions/userActions.jsx";
@@ -11,7 +17,9 @@ const store = configureStore({
   reducer: {
     userLogin: userLoginReducer,
     userList: userListReducer,
+    userProfile: userProfileReducer,
     userRegister: userRegisterReducer,
+    registrationDetail: registrationDetailsReducer,
     roomDetails: roomDetailReducer,
     roomDetail: roomDetailsReducer,
     addRooms: addRoomReducer,
