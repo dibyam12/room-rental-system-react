@@ -21,6 +21,7 @@ import Admin from "../pages/admin/Admin.jsx";
 import Registerverify from "../components/registerverify/Registerverify.jsx";
 import MyRooms from "../components/myrooms/MyRooms.jsx";
 import Users from "../components/users/Users.jsx";
+import ChatDetail from "../components/chatDetail/ChatDetail.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -43,10 +44,8 @@ const router = createBrowserRouter([
           <MyRooms />
           // </PrivateRoute>
         ),
-      }
-      
-      ,
-      
+      },
+
       {
         path: "/room-details",
         element: (
@@ -63,22 +62,28 @@ const router = createBrowserRouter([
           // </PrivateRoute>
         ),
       },
-        {
+      {
         path: "/user/:userId",
         element: (
           // <PrivateRoute>
           <Users />
           // </PrivateRoute>
         ),
-      }
-        ,
+      },
       {
         path: "/message",
         element: (
           // <PrivateRoute>
           <Chats />
+
           // </PrivateRoute>
         ),
+        children: [
+          {
+            path: "/message/:id",
+            element: <ChatDetail />,
+          },
+        ],
       },
       {
         path: "/profile",
@@ -88,12 +93,10 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <Admin />,
       },
-        
-        {
+
+      {
         path: "/register-verify",
-        element: (
-          <RegisterLogin />
-        ),
+        element: <RegisterLogin />,
       },
     ],
   },
