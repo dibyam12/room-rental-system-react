@@ -11,8 +11,12 @@ import { logout } from "../../actions/userActions.jsx";
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const {user, loading, error} = useSelector(state => state.userProfile);
+  // console.log(user,'sfsf')
+   // const { users, loading, error } = useSelector(state => state.userList);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // console.log(userInfo,'sdf')
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -87,10 +91,11 @@ const Header = () => {
                 </button>
               </Link>
             )}
-
             
+            {userInfo?.profile?.is_verified ? (<Link to="/" className="pop-up">Verified</Link>):
+               ( <Link to="/register-verify" className="pop-up">Unverified</Link>)}
             
-          <Link to="/register-verify" className="pop-up">Unverified</Link>
+          {/*<Link to="/register-verify" className="pop-up">Unverified</Link>*/}
 
           </div>
         </div>
