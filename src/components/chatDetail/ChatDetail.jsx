@@ -62,26 +62,28 @@ const ChatDetail = () => {
   const user_id = decode.user_id;
   const username = userInfo.usesrname;
   console.log(user_id);
+  console.log(id.id);
   console.log(userInfo.username);
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const res = await axios.get(`${backendUrl}/myMessages/${user_id}/`);
-        setMessages(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchMessages();
-  }, [user_id]);
+  // useEffect(() => {
+  //   const fetchMessages = async () => {
+  //     try {
+  //       const res = await axios.get(`${backendUrl}/myMessages/${user_id}/`);
+  //       setMessages(res.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchMessages();
+  // }, [user_id]);
 
   // Fetches real-time messages for specific chat at regular intervals
   useEffect(() => {
     let interval = setInterval(() => {
       try {
         axios
-          .get(`${backendUrl}/myMessages/${user_id}/${id.id}/`)
+          .get(`${backendUrl}/getMessages/${user_id}/${id.id}/`)
+
           .then((res) => {
             setMessage(res.data);
             console.log(res.data);
@@ -89,38 +91,39 @@ const ChatDetail = () => {
       } catch (error) {
         console.log(error);
       }
-    }, [user_id]);
+    }, 10000);
     return () => {
       clearInterval(interval);
     };
-  }, [user_id, id]);
+  }, [user_id, id.id]);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        await axios.get(`${backendUrl}/profile/${id.id}/`).then((res) => {
-          setProfile(res.data);
-          setUser(res.data.user);
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchProfile();
-  }, [id]);
+  // useEffect(() => {
+  //   const fetchProfile = async () => {
+  //     try {
+  //       await axios.get(`${backendUrl}/profile/${id.id}/`).then((res) => {
+  //         setProfile(res.data);
+  //         setUser(res.data.user);
+  //       });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchProfile();
+  // }, [id]);
 
   const SendMessage = () => {
     const formdata = new FormData();
     formdata.append("user", user_id);
     formdata.append("sender", user_id);
-    formdata.append("reciever", id.id);
+    formdata.append("receiver", id.id);
     formdata.append("message", newMessage.message);
     formdata.append("is_read", false);
+    console.log(formdata);
 
     try {
       axios.post(`${backendUrl}/sendMessages/`, formdata).then(() => {
         document.getElementById("text-input").value = "";
-        setnewMessage((newMessage = ""));
+        setnewMessage({ message: "" });
       });
     } catch (error) {
       console.log("error ===", error);
@@ -128,8 +131,7 @@ const ChatDetail = () => {
   };
   const handleChange = (event) => {
     setnewMessage({
-      ...newMessage,
-      [event.target.name]: event.target.value,
+      message: event.target.value,
     });
   };
 
@@ -155,8 +157,8 @@ const ChatDetail = () => {
           message.map((msg, index) => (
             <div
               key={index}
-              className={`p-4 ${
-                msg.sender.id === user_id
+              className={`p-4 w-[50%] ${
+                msg.sender === user_id
                   ? "bg-cyan-600 text-white rounded-b-xl rounded-tl-xl ml-auto"
                   : "bg-gray-300 rounded-b-xl rounded-tr-xl"
               }`}
@@ -165,9 +167,7 @@ const ChatDetail = () => {
             </div>
           ))
         ) : (
-          <div className="text-center text-gray-500">
-            Select a chat to view messages
-          </div>
+          <div className="text-center text-gray-500">Loading...</div>
         )}
       </div>
 
@@ -177,7 +177,7 @@ const ChatDetail = () => {
           className="m-2 w-[90%] p-4 border-0 shadow-md rounded-full bg-light outline-none"
           type="text"
           placeholder="Type your message..."
-          value={newMessage}
+          value={newMessage.message}
           onChange={handleChange}
         />
         <div

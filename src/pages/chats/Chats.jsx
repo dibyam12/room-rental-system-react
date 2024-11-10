@@ -1,7 +1,6 @@
 // import Header from "../components/header/Header";
 
 import { Outlet } from "react-router-dom";
-import ChatDetail from "../../components/chatDetail/ChatDetail";
 import ChatList from "../../components/chatList/ChatList";
 
 const Chats = () => {

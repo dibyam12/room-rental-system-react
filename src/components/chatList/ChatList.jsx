@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -14,12 +13,13 @@ const ChatList = () => {
   const decode = jwtDecode(userInfo.token);
   // console.log(decode);
   const user_id = decode.user_id;
-  console.log(user_id);
+  console.log(" user_id =" + user_id);
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(`${backendUrl}/myMessages/${user_id}/`);
+        console.log(res.data);
         setMessages(res.data);
       } catch (error) {
         console.log(error);
@@ -40,12 +40,11 @@ const ChatList = () => {
         {messages.map((message) => (
           <Link
             to={`/message/${
-              message.sender.id === user_id
-                ? message.receiver.id
-                : message.sender.id
-            }/`}
+              message.sender === user_id ? message.reciever : message.sender
+            }`}
             key={message.id}
           >
+            {console.log(message.receiver)}
             <small>
               <div className="badge bg-success float-right text-black">
                 {moment.utc(message.date).local().startOf("seconds").fromNow()}
@@ -54,7 +53,7 @@ const ChatList = () => {
             <div className="d-flex align-items-start">
               <img
                 src={
-                  message.sender.id !== user_id
+                  message.sender !== user_id
                     ? message.sender_profile.image
                     : message.receiver_profile.image
                 }
@@ -65,7 +64,7 @@ const ChatList = () => {
               />
               <div className="flex-grow-1 ml-3">
                 <p className="text-xl font-bold">
-                  {message.sender.id === user_id
+                  {message.sender === user_id
                     ? message.receiver_profile.full_name ||
                       message.receiver.username
                     : message.sender.username}
