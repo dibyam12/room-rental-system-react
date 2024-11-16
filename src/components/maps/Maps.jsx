@@ -1,6 +1,12 @@
 // src/Maps.jsx
 
-import { MapContainer, Marker, TileLayer, Popup, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
 import { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Maps.css";
@@ -8,7 +14,7 @@ import MapCard from "../mapCard/MapCard";
 
 const Maps = () => {
   const dispatch = useDispatch();
-  const coordinates = useSelector(state => state.coordinates); // Access coordinates from Redux state
+  const coordinates = useSelector((state) => state.coordinates); // Access coordinates from Redux state
   const { longitude, latitude } = coordinates;
 
   const defaultPosition = { lat: 27.698256, lng: 85.320044 }; // Default Kathmandu coordinates
@@ -31,7 +37,9 @@ const Maps = () => {
 
   // Callback function to handle geolocation errors
   const useipApi = useCallback(() => {
-    console.error("Error getting location from the device, using IP-based location as fallback.");
+    console.error(
+      "Error getting location from the device, using IP-based location as fallback."
+    );
     fetch("https://ipapi.co/json/")
       .then((res) => res.json())
       .then((location) => {
@@ -95,13 +103,14 @@ const Maps = () => {
           center={position}
           zoom={zoom}
           scrollWheelZoom={true}
-          style={{ height: "100vh", width: "100%" }}
+          style={{ height: "89.5vh", width: "100%" }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <LocationMarker /> {/* Custom component to handle clicks and log coordinates */}
+          <LocationMarker />{" "}
+          {/* Custom component to handle clicks and log coordinates */}
           {haveUserLocation && (
             <Marker position={position}>
               <Popup>

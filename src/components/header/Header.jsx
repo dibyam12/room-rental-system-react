@@ -11,9 +11,9 @@ import { logout } from "../../actions/userActions.jsx";
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const {user, loading, error} = useSelector(state => state.userProfile);
+  const { user, loading, error } = useSelector((state) => state.userProfile);
   // console.log(user,'sfsf')
-   // const { users, loading, error } = useSelector(state => state.userList);
+  // const { users, loading, error } = useSelector(state => state.userList);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // console.log(userInfo,'sdf')
@@ -30,7 +30,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="contents">
-          <div className="search-bar inline-flex items-center">
+          {/* <div className="search-bar inline-flex items-center">
             <input
               type="text"
               className="searchBar w-96 p-3 text-black  focus:outline-none rounded-full  "
@@ -38,20 +38,21 @@ const Header = () => {
             <button className=" bg-cyan-600 font-semi-old border text-white p-3  ml-1 hover:bg-white rounded-full   border-white hover:text-cyan-600 hover:outline-none">
               <FaSearch className="text-xl" />
             </button>
-          </div>
+          </div> */}
           {/* </Autocomplete> */}
 
           <div className="buttons">
             {console.log(userInfo)}
-            
-            {userInfo?.profile?.userType === 'Landlord' || userInfo?.profile?.userType === 'Admin' && (
-              <Link to="/myrooms">
-                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                  My Rooms
-                </button>
-              </Link>
-            )}
-            
+
+            {userInfo?.profile?.userType === "Landlord" ||
+              (userInfo?.profile?.userType === "Admin" && (
+                <Link to="/myrooms">
+                  <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                    My Rooms
+                  </button>
+                </Link>
+              ))}
+
             {userInfo && (
               <Link to="/message">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
@@ -59,13 +60,14 @@ const Header = () => {
                 </button>
               </Link>
             )}
-            {userInfo?.profile?.userType === "Landlord" || userInfo?.profile?.userType === 'Admin' && (
-              <Link to="/add-room">
-                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                  Add Rent
-                </button>
-              </Link>
-            )}
+            {userInfo?.profile?.userType === "Landlord" ||
+              (userInfo?.profile?.userType === "Admin" && (
+                <Link to="/add-room">
+                  <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                    Add Rent
+                  </button>
+                </Link>
+              ))}
 
             {userInfo && (
               <Link to="/profile">
@@ -75,7 +77,6 @@ const Header = () => {
               </Link>
             )}
             {userInfo ? (
-
               <Link to="/">
                 <button
                   onClick={logoutHandler}
@@ -91,12 +92,16 @@ const Header = () => {
                 </button>
               </Link>
             )}
-            
-            {userInfo?.profile?.is_verified ? (<Link to="/" className="pop-up">Verified</Link>):
-               ( <Link to="/register-verify" className="pop-up">Unverified</Link>)}
-            
-          {/*<Link to="/register-verify" className="pop-up">Unverified</Link>*/}
 
+            {/* {userInfo?.profile?.is_verified ? (
+              <Link to="/" className="pop-up">
+                Verified
+              </Link>
+            ) : (
+              <Link to="/register-verify" className="pop-up">
+                Unverified
+              </Link>
+            )} */}
           </div>
         </div>
       </nav>

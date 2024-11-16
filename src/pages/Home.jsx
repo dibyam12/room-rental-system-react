@@ -5,12 +5,12 @@ import Maps from "../components/maps/Maps";
 const Home = () => {
   return (
     <>
-      <div className="container1 flex flex-col">
-        <div className="flex flex-row flex-grow">
+      <div className="container1 flex   flex-col">
+        <div className="flex flex-row ">
           <div className="list w-1/5 m-5">
             <List />
           </div>
-          <div className="maps flex-grow h-[88.5vh] ">
+          <div className="maps flex-grow  ">
             <Maps />
           </div>
         </div>
