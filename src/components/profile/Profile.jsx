@@ -65,7 +65,7 @@ const Profile = () => {
             &nbsp; {userInfo?.profile?.userType} <br />
           </p>
           <div className="card-actions flex      justify-end">
-            {userInfo.profile.is_verified ? (
+            {userInfo.profile?.is_verified ? (
               <div
                 className="bg-green-500 text-white font-semibold w-[120px] flex items-center pl-3 rounded-full
            "
