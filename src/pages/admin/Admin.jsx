@@ -79,12 +79,22 @@ const Admin = () => {
                       {user.profile?.is_verified ? "Verified" : "Not verified"}
                     </td>
                     <td>
-                      <button
+                      {user.profile?.is_verified ? (
+                        <button
+                          onClick={() => handleDetailClick(user.id)}
+                          className="btn bg-cyan-600 text-white"
+                        >
+                          Details
+                        </button>
+                      ) : (
+                        ""
+                      )}
+                      {/* <button
                         onClick={() => handleDetailClick(user.id)}
                         className="btn bg-cyan-600 text-white"
                       >
                         Details
-                      </button>
+                      </button> */}
                     </td>
                   </tr>
                 ))}
@@ -198,7 +208,9 @@ const Admin = () => {
       </div>
       {loading && (
         <div>
-          <p className="flex items-center justify-center">Loading...</p>
+          <p className="flex items-center justify-center">
+            <span className="loading loading-spinner text-info"></span>
+          </p>
         </div>
       )}
       {error && (
