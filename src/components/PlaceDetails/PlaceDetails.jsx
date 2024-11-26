@@ -70,6 +70,7 @@ const PlaceDetails = (props) => {
         <div className="call-message flex  items-center rounded-lg  outline mb-4  flex-row">
           <div className="call w-1/2 flex  justify-center p-3  hover:bg-gray-100 ">
             <IoCall className="icon w-full" />
+            {}
             {/* <a href={`tel:+977${}`}></a> */}
           </div>
           <Link

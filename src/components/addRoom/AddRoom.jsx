@@ -281,6 +281,16 @@ const AddRoom = () => {
           </MapContainer>
         </div>
 
+        <div className="flex flex-col">
+          <label className=" text-lg  w-fullfont-medium mb-1">
+            Other details
+          </label>
+          <textarea
+            className="textarea textarea-info w-full"
+            placeholder="Add extra Information about your rooms "
+          ></textarea>
+        </div>
+
         <div className="flex justify-end mt-5">
           <button
             onClick={handleSubmit}
