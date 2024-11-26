@@ -50,7 +50,7 @@ const Admin = () => {
           type="radio"
           name="my_tabs"
           role="tab"
-          className="tab font-semibold"
+          className="tab font-semibold !w-max"
           aria-label="All Users"
         />
         <div
