@@ -98,23 +98,21 @@ const Users = () => {
               <strong>E-mail :</strong>
               &nbsp; {userMain?.email} <br />
               <strong>Date Of Birth:</strong>
-              &nbsp; YYYY/MM/DD <br />
-              <strong>Nationality:</strong>
-              &nbsp; Nepali <br />
-              <strong>Citizenship-no:</strong>
-              &nbsp; {""}
+              &nbsp; {userMain?.registerVerify?.date_of_birth} <br />
+              
+           
               <br />
               <br />
               <strong className="card-title">Verification Documents: </strong>
             </p>{" "}
             <br />
-            {userMain?.registerVerify?.image2 && (
+            {userMain?.registerVerify?.passportPhoto && (
               <>
                 <strong>Photo: </strong>
                 <div className=" w-[20%] h-[20%] overflow-hidden ml-[20%]  rounded-box">
                   <img
                     className="w-full h-full object-cover"
-                    src={`${backendUrl}/${userMain?.registerVerify?.image2}`}
+                    src={`${backendUrl}/${userMain?.registerVerify?.passportPhoto}`}
                   />
                 </div>
               </>
@@ -122,36 +120,26 @@ const Users = () => {
             <br />
             <strong>Citizenship front and back: </strong>
             <div className="flex  flex-col lg:flex-row ml-[20%]">
-              {userMain?.registerVerify?.image && (
+              {userMain?.registerVerify?.citizenshipFront && (
                 <div className="card bg-base-300 rounded-box  h-[25%] w-[25%]  overflow-hidden">
                   <img
                     className="w-full h-full object-cover"
-                    src={`${backendUrl}/${userMain?.registerVerify?.image}`}
+                    src={`${backendUrl}/${userMain?.registerVerify?.citizenshipFront}`}
                   />
                 </div>
               )}
               <div className="divider lg:divider-horizontal"></div>
-              {userMain?.registerVerify?.image1 && (
+              {userMain?.registerVerify?.citizenshipBack && (
                 <div className="card bg-base-300 rounded-box   h-[25%] w-[25%] overflow-hidden  ">
                   <img
                     className="w-full h-full object-cover"
-                    src={`${backendUrl}/${userMain?.registerVerify?.image1}`}
+                    src={`${backendUrl}/${userMain?.registerVerify?.citizenshipBack}`}
                   />
                 </div>
               )}
             </div>
             <br />
-            {userMain?.registerVerify?.image3 && (
-              <>
-                <strong>Other verification documents: </strong>
-                <div className=" w-[20%] h-[20%] overflow-hidden ml-[20%]   rounded-box">
-                  <img
-                    className="w-full h-full object-cover"
-                    src={`${backendUrl}/${userMain?.registerVerify?.image3}`}
-                  />
-                </div>
-              </>
-            )}
+          
             <br />
           </div>
           <div className="card-actions flex justify-end">

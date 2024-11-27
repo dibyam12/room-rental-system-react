@@ -167,7 +167,7 @@ const AddRoom = () => {
             name="rooms"
             value={formData.rooms}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
             required
           />
         </div>
@@ -178,7 +178,7 @@ const AddRoom = () => {
             name="bathroomType"
             value={formData.bathroomType}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           >
             <option value="attached">Attached</option>
             <option value="shared">Shared</option>
@@ -192,7 +192,7 @@ const AddRoom = () => {
             name="rentPrice"
             value={formData.rentPrice}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
             required
           />
         </div>
@@ -205,7 +205,7 @@ const AddRoom = () => {
             name="address"
             value={formData.address}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           />
         </div>
 
@@ -219,7 +219,7 @@ const AddRoom = () => {
               type="file"
               accept="image/*"
               name="image1"
-              className="form-input px-4 py-3 rounded-full"
+              className="form-input px-4 py-3 rounded-full text-black"
               onChange={(e) => handleImageChange(e, "image")}
             />
           </div>
@@ -229,7 +229,7 @@ const AddRoom = () => {
               type="file"
               accept="image/*"
               name="image1"
-              className="form-input px-4 py-3 rounded-full"
+              className="form-input px-4 py-3 rounded-full text-black"
               onChange={(e) => handleImageChange(e, "image1")}
             />
           </div>
@@ -239,7 +239,7 @@ const AddRoom = () => {
               type="file"
               accept="image/*"
               name="image1"
-              className="form-input px-4 py-3 rounded-full"
+              className="form-input px-4 py-3 rounded-full text-black"
               onChange={(e) => handleImageChange(e, "image2")}
             />
           </div>
@@ -249,7 +249,7 @@ const AddRoom = () => {
               type="file"
               accept="image/*"
               name="image1"
-              className="form-input px-4 py-3 rounded-full"
+              className="form-input px-4 py-3 rounded-full text-black"
               onChange={(e) => handleImageChange(e, "image3")}
             />
           </div>
@@ -286,7 +286,7 @@ const AddRoom = () => {
             Other details
           </label>
           <textarea
-            className="textarea textarea-info w-full"
+            className="textarea textarea-info w-full text-black"
             placeholder="Add extra Information about your rooms "
           ></textarea>
         </div>

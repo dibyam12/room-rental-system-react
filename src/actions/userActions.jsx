@@ -143,7 +143,7 @@ export const register =
             : error.message,
       });
     
-  };
+  }
 };
 
 export const verifyRegister = (formData) => async (dispatch) => {

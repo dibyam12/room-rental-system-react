@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { verifyRegister } from "../../actions/userActions.jsx";
 
 const RegisterVerify = () => {
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     fullName: "",
     dateOfBirth: "",
@@ -19,9 +20,7 @@ const RegisterVerify = () => {
     passportPhoto: null,
     citizenshipFront: null,
     citizenshipBack: null,
-    citizenshipNumber: "",
-    citizenshipIssueDate: "",
-    citizenshipIssueDistrict: "",
+    
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -53,8 +52,7 @@ const RegisterVerify = () => {
     if (!formData.email) errors.email = "Email is required";
     if (!formData.permanentAddress)
       errors.permanentAddress = "Address is required";
-    if (!formData.citizenshipNumber)
-      errors.citizenshipNumber = "Citizenship Number is required";
+    
     if (!formData.passportPhoto)
       errors.passportPhoto = "Passport-sized photo is required";
     if (!formData.citizenshipFront)
@@ -71,6 +69,17 @@ const RegisterVerify = () => {
       console.log("Form Data:", formData);
       setIsSubmitted(true);
     }
+    const data = new FormData
+    for (const key in formData){
+       if (formData[key]) {
+        data.append(key, formData[key]);
+      }
+    }
+    data.forEach((value, key) => {
+      console.log(key, value);  // This will log each field name and its value
+    });
+    console.log(data)
+    dispatch(verifyRegister(data));
   };
 
   //     const dispatch = useDispatch();
@@ -413,43 +422,7 @@ const RegisterVerify = () => {
                   required
                 />
               </div>
-              <div className="form-group mb-4">
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Citizenship Number
-                </label>
-                <input
-                  type="text"
-                  name="citizenshipNumber"
-                  value={formData.citizenshipNumber}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  required
-                />
-              </div>
-              <div className="form-group mb-4">
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Citizenship Issue Date
-                </label>
-                <input
-                  type="date"
-                  name="citizenshipIssueDate"
-                  value={formData.citizenshipIssueDate}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-              </div>
-              <div className="form-group mb-4">
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Citizenship Issue District
-                </label>
-                <input
-                  type="text"
-                  name="citizenshipIssueDistrict"
-                  value={formData.citizenshipIssueDistrict}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-              </div>
+             
               <button
                 type="submit"
                 className="w-full p-3 text-white bg-green-600 rounded-lg text-lg font-bold transition duration-300 hover:bg-green-700 active:bg-green-800"
