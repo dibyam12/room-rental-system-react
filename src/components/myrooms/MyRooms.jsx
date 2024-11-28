@@ -63,9 +63,9 @@ const MyRooms = () => {
               </tr>
             </thead>
             <tbody>
-              {rooms.map((room) => (
-                <tr key={room.id} className="hover text-center">
-                  <td>{{ x }}</td>
+              {rooms?.map((room) => (
+                <tr key={room.id} className="hover text-center text-black">
+                  <td>{ x }</td>
                   <td>{room.number_of_rooms}</td>
                   <td>{room.rent}</td>
                   <td>{room.address}</td>
@@ -74,7 +74,7 @@ const MyRooms = () => {
                       <div id={room.image} className="carousel-item w-full">
                         {room.image && (
                           <img
-                            src={`${backendUrl}${room.image}`}
+                            src={`${backendUrl}/${room.image}`}
                             className="w-full"
                           />
                         )}
@@ -159,8 +159,8 @@ const MyRooms = () => {
                   {rooms
                     .filter((room) => room?.is_shared)
                     .map((room) => (
-                      <tr key={room.id} className="hover text-center">
-                        <td>{{ x }}</td>
+                      <tr key={room.id} className="hover text-center text-black">
+                        <td>ds{ x }</td>
                         <td>{room.number_of_rooms}</td>
                         <td>{room.rent}</td>
                         <td>{room.address}</td>
@@ -211,8 +211,8 @@ const MyRooms = () => {
                               )}
                             </div>
                           </div>
-                          <div className="flex w-full justify-center gap-2 py-2">
-                            <a href={`#${room.image}`} className="btn btn-xs">
+                          <div className="flex w-full justify-center gap-2 py-2 text-black">
+                            <a href={`#${room.image}`} className="btn btn-xs text-black">
                               1
                             </a>
                             <a href={`#${room.image1}`} className="btn btn-xs">
@@ -269,8 +269,8 @@ const MyRooms = () => {
                   {rooms
                     .filter((room) => !room?.is_shared)
                     .map((room) => (
-                      <tr key={room.id} className="hover text-center">
-                        <td>{{ x }}</td>
+                      <tr key={room.id} className="hover text-center text-black">
+                        <td>{ x }</td>
                         <td>{room.number_of_rooms}</td>
                         <td>{room.rent}</td>
                         <td>{room.address}</td>

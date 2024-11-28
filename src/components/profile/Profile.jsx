@@ -12,6 +12,7 @@ const Profile = () => {
   const { userInfo } = userLogin;
   const registrationDetail = useSelector((state) => state.registrationDetail);
   const { user } = registrationDetail;
+  console.log(user.passportPhoto)
   useEffect(() => {
     dispatch(fetchRegistrationDetail());
   }, [dispatch]);
@@ -30,12 +31,13 @@ const Profile = () => {
       <div className="card bg-base-100 w-96 shadow-xl">
         <div className="bg-cyan-600 h-60 flex justify-center items-center ">
           <div className="w-[206px] h-[206px] rounded-full overflow-hidden outline outline-white outline-8 top-[25px] relative ">
-            {userInfo.image ? (
+            {userInfo.passportPhoto ? (
               <>
                 {" "}
                 <img
                   className="w-full h-full"
-                  src={userInfo.profile_image}
+                  src={`${backendUrl}/${user.citizenshipFront}`}
+                  // src={userInfo.passportPhoto}
                   alt="Shoes"
                 />
               </>
@@ -47,7 +49,7 @@ const Profile = () => {
             )}
             <img
               className="w-full h-full"
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+              src={`${backendUrl}/${user.passportPhoto}`}
               alt="Shoes"
             />
           </div>

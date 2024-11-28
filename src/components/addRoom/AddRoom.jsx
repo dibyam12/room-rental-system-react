@@ -41,6 +41,7 @@ const AddRoom = () => {
     bathroomType: "attached",
     rentPrice: 0,
     address: "",
+    phoneNumber: 0,
     longitude: longitude,
     latitude: latitude,
   });
@@ -76,6 +77,7 @@ const AddRoom = () => {
     formDatas.append("latitude", formData.latitude);
     formDatas.append("longitude", formData.longitude);
     formDatas.append("address", formData.address);
+    formDatas.append("phoneNumber", formData.phoneNumber);
 
     if (images.image) formDatas.append("image", images.image);
     if (images.image1) formDatas.append("image1", images.image1);
@@ -138,7 +140,7 @@ const AddRoom = () => {
       setZoom(15);
     }
   }, [longitude, latitude]);
-
+console.log(formData,'dsfdsf')
   function LocationMarrker() {
     useMapEvents({
       click(e) {
@@ -163,94 +165,106 @@ const AddRoom = () => {
         <div>
           <label className="block text-md font-medium ">Number of Rooms</label>
           <input
-            type="number"
-            name="rooms"
-            value={formData.rooms}
-            onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-            required
+              type="number"
+              name="rooms"
+              value={formData.rooms}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              required
           />
         </div>
-
+        
         <div>
           <label className="block text-md font-medium ">Bathroom Type</label>
           <select
-            name="bathroomType"
-            value={formData.bathroomType}
-            onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              name="bathroomType"
+              value={formData.bathroomType}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           >
             <option value="attached">Attached</option>
             <option value="shared">Shared</option>
           </select>
         </div>
-
+        
         <div>
           <label className="block text-md font-medium ">Rent Price</label>
           <input
-            type="number"
-            name="rentPrice"
-            value={formData.rentPrice}
-            onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-            required
+              type="number"
+              name="rentPrice"
+              value={formData.rentPrice}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              required
           />
         </div>
-
+        
+        <div>
+          <label className="block text-md font-medium ">Phone Number</label>
+          <input
+              type="number"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              required
+          />
+        </div>
+        
         <div>
           <label className="block text-md font-medium ">Address</label>
-
+          
           <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           />
         </div>
-
+        
         <div>
           <label className=" text-lg font-medium mb-0">
             Room Images (4 required)
           </label>
           <div className="input-box">
-            <FaRegFileImage className="icon" />
+            <FaRegFileImage className="icon"/>
             <input
-              type="file"
-              accept="image/*"
-              name="image1"
-              className="form-input px-4 py-3 rounded-full text-black"
-              onChange={(e) => handleImageChange(e, "image")}
+                type="file"
+                accept="image/*"
+                name="image1"
+                className="form-input px-4 py-3 rounded-full text-black"
+                onChange={(e) => handleImageChange(e, "image")}
             />
           </div>
           <div className="input-box">
-            <FaRegFileImage className="icon" />
+            <FaRegFileImage className="icon"/>
             <input
-              type="file"
-              accept="image/*"
-              name="image1"
-              className="form-input px-4 py-3 rounded-full text-black"
-              onChange={(e) => handleImageChange(e, "image1")}
+                type="file"
+                accept="image/*"
+                name="image1"
+                className="form-input px-4 py-3 rounded-full text-black"
+                onChange={(e) => handleImageChange(e, "image1")}
             />
           </div>
           <div className="input-box">
-            <FaRegFileImage className="icon" />
+            <FaRegFileImage className="icon"/>
             <input
-              type="file"
-              accept="image/*"
-              name="image1"
-              className="form-input px-4 py-3 rounded-full text-black"
-              onChange={(e) => handleImageChange(e, "image2")}
+                type="file"
+                accept="image/*"
+                name="image1"
+                className="form-input px-4 py-3 rounded-full text-black"
+                onChange={(e) => handleImageChange(e, "image2")}
             />
           </div>
           <div className="input-box">
-            <FaRegFileImage className="icon" />
+            <FaRegFileImage className="icon"/>
             <input
-              type="file"
-              accept="image/*"
-              name="image1"
-              className="form-input px-4 py-3 rounded-full text-black"
-              onChange={(e) => handleImageChange(e, "image3")}
+                type="file"
+                accept="image/*"
+                name="image1"
+                className="form-input px-4 py-3 rounded-full text-black"
+                onChange={(e) => handleImageChange(e, "image3")}
             />
           </div>
         </div>
@@ -261,41 +275,41 @@ const AddRoom = () => {
         </div>
         <div className="h-64">
           <MapContainer
-            center={position}
-            zoom={15}
-            style={{ height: "98%", width: "100%" }}
+              center={position}
+              zoom={15}
+              style={{height: "98%", width: "100%"}}
           >
             <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-
-            <LocationMarrker />
+            
+            <LocationMarrker/>
             {haveUserLocation && (
-              <Marker position={position}>
-                <Popup>
-                  <MapCard />
-                </Popup>
-              </Marker>
+                <Marker position={position}>
+                  <Popup>
+                    <MapCard/>
+                  </Popup>
+                </Marker>
             )}
           </MapContainer>
         </div>
-
+        
         <div className="flex flex-col">
           <label className=" text-lg  w-fullfont-medium mb-1">
             Other details
           </label>
           <textarea
-            className="textarea textarea-info w-full text-black"
-            placeholder="Add extra Information about your rooms "
+              className="textarea textarea-info w-full text-black"
+              placeholder="Add extra Information about your rooms "
           ></textarea>
         </div>
-
+        
         <div className="flex justify-end mt-5">
           <button
-            onClick={handleSubmit}
-            type="submit"
-            className="px-4 py-2 bg-blue-600 text-white rounded-md"
+              onClick={handleSubmit}
+              type="submit"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md"
           >
             Submit
           </button>
