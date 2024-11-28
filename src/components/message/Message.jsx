@@ -62,8 +62,10 @@ const MessageComponent = () => {
               <p>Error: {error}</p>
           ) : (
               <div>
+                {message.map(msg=> console.log(msg.receiver, receiverId))}
                  {message.map((msg) => (
-    (msg.sender === senderId+1 || msg.receiver === senderId+1) ? (
+    ((msg.sender === senderId + 1 || msg.receiver === senderId + 1) &&
+   (msg.sender === Number(receiverId)  || msg.receiver === Number(receiverId) )) ? (
       <div key={msg.id}>
         <p>
           <strong>Sender {msg.sender}</strong>: {msg.message} <br/>
