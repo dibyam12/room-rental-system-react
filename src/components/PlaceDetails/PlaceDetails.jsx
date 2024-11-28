@@ -17,7 +17,7 @@ const PlaceDetails = (props) => {
   const { rooms } = roomDetails;
    const {roomid} = useParams()
     const room = rooms.find((room) => room.id === Number(roomid));
-    console.log(room, 'room')
+    console.log(room.user, 'room')
    
 
   // Settings for the slider
@@ -105,7 +105,7 @@ const PlaceDetails = (props) => {
                             {/* <a href={`tel:+977${}`}></a> */}
                         </div>
                         <Link
-                            to="/message"
+                            to={`/message/${room.user}`}
                             className="message flex justify-center rounded-r-lg hover:bg-gray-100  outline w-1/2 p-3"
                         >
                             <div className="w-full">
