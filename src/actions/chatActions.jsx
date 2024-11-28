@@ -80,3 +80,21 @@ export const fetchMessages = (senderId, receiverId) => async (dispatch) => {
 };
 
 
+
+export const fetchChatUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'FETCH_CHAT_USERS_REQUEST' });
+
+    const response = await axios.get('/chat-users/');
+    dispatch({
+      type: 'FETCH_CHAT_USERS_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'FETCH_CHAT_USERS_FAILURE',
+      payload: error.message,
+    });
+  }
+};
+

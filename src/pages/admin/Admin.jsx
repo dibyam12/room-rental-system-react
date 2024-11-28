@@ -58,7 +58,7 @@ const Admin = () => {
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
           <div className="overflow-x-auto">
-            <table className="table text-white">
+            <table className="table text-black">
               {/* head */}
               <thead>
                 <tr>
@@ -71,7 +71,7 @@ const Admin = () => {
               </thead>
               <tbody>
                 {users.map((user) => (
-                  <tr key={user.id} className="hover">
+                  <tr key={user.id} className="hover text-black">
                     <td>{user.username}</td>
                     <td>{user.email}</td>
                     <td>{user.profile?.userType || "N/A"}</td>
@@ -131,7 +131,7 @@ const Admin = () => {
                 {users
                   .filter((user) => !user.profile?.is_verified) // Filter not verified users
                   .map((user) => (
-                    <tr key={user.id} className="hover">
+                    <tr key={user.id} className="hover text-black">
                       <td>{user.username}</td>
                       <td>{user.email}</td>
                       <td>{user.profile?.userType || "N/A"}</td>
@@ -182,7 +182,7 @@ const Admin = () => {
                 {users
                   .filter((user) => user.profile?.is_verified)
                   .map((user) => (
-                    <tr key={user.id} className="hover">
+                    <tr key={user.id} className="hover text-black">
                       <td>{user.username}</td>
                       <td>{user.email}</td>
                       <td>{user.profile?.userType || "N/A"}</td>

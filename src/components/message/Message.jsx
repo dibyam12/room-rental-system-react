@@ -1,20 +1,31 @@
 // src/components/MessageComponent.js
 import React, { useEffect, useState } from 'react';
-import { getMessages, sendMessage } from '../../actions/chatActions.jsx';
+import {fetchChatUsers, getMessages, sendMessage} from '../../actions/chatActions.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import { fetchRegistrationDetail } from '../../actions/userActions.jsx';
 import {fetchMessages} from "../../actions/chatActions.jsx";
 const MessageComponent = () => {
   const registrationDetail = useSelector((state) => state.registrationDetail);
   const { user } = registrationDetail;
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    dispatch(fetchChatUsers());
+  }, [dispatch]);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
   const senderId = user.id;
   const { id: receiverId } = useParams();
+  const userChatList = []
     const { messages:message, loading, error } = useSelector((state) => state.chat);
-
+  //
+  
+  
+  
+  //
+  
   useEffect(() => {
     dispatch(fetchRegistrationDetail());
   }, [dispatch]);
@@ -68,7 +79,9 @@ const MessageComponent = () => {
    (msg.sender === Number(receiverId)  || msg.receiver === Number(receiverId) )) ? (
       <div key={msg.id}>
         <p>
-          <strong>Sender {msg.sender}</strong>: {msg.message} <br/>
+            {/*<p>sender = {msg.sender_name}</p>*/}
+            {/*<p>reciever = {msg.receiver_name}</p>*/}
+          <strong>{msg.sender_name} {msg.sender}</strong>: {msg.message} <br/>
           <small>{new Date(msg.date).toLocaleString()}</small>
         </p>
       </div>
@@ -94,6 +107,31 @@ const MessageComponent = () => {
         />
         <button onClick={handleSendMessage}>Send</button>
       </div>
+        {/*////////////////------------ users chat list ----------------////////////*/}
+        <div>left side ko yo chat list
+            {message.slice().reverse().map((userchat,index) => (
+    !userChatList.includes(userchat.receiver) && (
+        
+        <div key={index}>
+            {user.id+1 === userchat.receiver || user.id+1 === userchat.sender && (
+                <div>
+                    <div className={'text-white'}>{userChatList.push(userchat.receiver)}</div>
+                    {console.log(userChatList)}
+                    <div onClick={() => navigate(`/message/${userchat.receiver}`)}>
+                        <p>
+                            {userchat.receiver_name}
+                        </p>
+                        <p>
+                            {userchat.message}
+                        </p>
+                    </div>
+                </div>
+            )}
+        
+        </div>
+    )
+            ))}
+        </div>
     </div>
   );
 };
