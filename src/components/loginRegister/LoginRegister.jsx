@@ -60,7 +60,7 @@ const LoginRegister = () => {
     e.preventDefault();
     // loginUser(loginUsername, loginPassword);
 
-    dispatch(login(loginUsername,loginPassword))
+    // dispatch(login(loginUsername,loginPassword))
     // navigate('/')
     
 

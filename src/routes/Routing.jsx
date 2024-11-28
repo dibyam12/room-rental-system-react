@@ -22,6 +22,7 @@ import Registerverify from "../components/registerverify/Registerverify.jsx";
 import MyRooms from "../components/myrooms/MyRooms.jsx";
 import Users from "../components/users/Users.jsx";
 import ChatDetail from "../components/chatDetail/ChatDetail.jsx";
+import Message from "../components/message/Message.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/room-details",
+        path: "/room-details/:roomid",
         element: (
           // <PrivateRoute>
           <RoomDetails />
@@ -74,7 +75,7 @@ const router = createBrowserRouter([
         path: "/message",
         element: (
           // <PrivateRoute>
-          <Chats />
+          <Message />
 
           // </PrivateRoute>
         ),

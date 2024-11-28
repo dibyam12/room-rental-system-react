@@ -143,7 +143,7 @@ const ChatDetail = () => {
             {/* {message.sender.id === user_id
               ? message.receiver_profile.full_name || message.receiver.username
               : message.sender.username} */}
-            Name
+            Namejgjhghggggggggggggggggg
           </div>
           <div className="p-3 hover:bg-gray-100 w-[50px] rounded-md cursor-pointer">
             <IoCall className="w-full" />

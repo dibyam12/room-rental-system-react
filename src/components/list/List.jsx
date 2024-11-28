@@ -51,7 +51,7 @@ const List = () => {
                   <b>Address:</b>
                   {room.address}
                 </div>
-                <Link to={`/`}>
+                <Link to={`/room-details/${room.id}`}>
                   <div className="view-more ml-32 inline-flex hover:cursor-pointer items-center">
                     Details <FaArrowRight/>
                   </div>
