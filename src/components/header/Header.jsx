@@ -54,7 +54,7 @@ const Header = () => {
               ))}
 
             {userInfo && (
-              <Link to="/message">
+              <Link to="/message/1">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Message
                 </button>
