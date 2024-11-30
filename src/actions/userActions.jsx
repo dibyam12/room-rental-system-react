@@ -186,7 +186,7 @@ export const addRooms = (formDatas) => async (dispatch) => {
     try {
         dispatch({ type: ADD_ROOM_REQUEST });
 
-        const token = JSON.parse(localStorage.getItem("userInfo"))?.access; // Fetch token from localStorage
+        const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
 
         
         if (!token) {
@@ -195,17 +195,17 @@ export const addRooms = (formDatas) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data', // Set content type for file uploads
-                Authorization: `Bearer ${token}`, // Include the authorization token
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`,
             },
         };
 
-        // Make the POST request with FormData
+        
         const { data } = await axios.post(`${backendUrl}/addrooms/`, formDatas, config);
         
-        dispatch({ type: ADD_ROOM_SUCCESS, payload: data }); // Dispatch success
+        dispatch({ type: ADD_ROOM_SUCCESS, payload: data });
     } catch (error) {
-        console.error('Error details:', error); // Log errors for debugging
+        console.error('Error details:', error);
         if (error.response) {
             console.error('Error response:', error.response.data);
             console.error('Status:', error.response.status);
