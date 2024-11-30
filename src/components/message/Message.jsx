@@ -251,6 +251,7 @@ const MessageComponent = () => {
                 (userchat, index) =>
                   !userChatList.includes(userchat.receiver) && (
                     <div key={index}>
+                        <p className='text-white'>{userChatList.push(userchat.receiver)}</p>
                       {user.id + 1 === userchat.receiver ||
                         (user.id + 1 === userchat.sender && (
                           <div
