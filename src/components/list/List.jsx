@@ -34,35 +34,31 @@ const List = () => {
       <div className="filter inline-flex items-center text-base hover:cursor-pointer">
         Filter <FaFilter />
       </div>
-      
       <div className="room-lists">
         {rooms.map((room) => (
-  !room.rented && (
-    <div key={room.id}>
-      <div
-        className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
-        onClick={() => locationHandler(room.longitude, room.latitude)}
-      >
-        <div className="Place-name mt-3 flex flex-col ml-2">
-          <h1 className="font-black text-xl mb-2">
-            {room.number_of_rooms}
-            {" rooms "}
-          </h1>
-          <div className="Address">
-            <b>Address: &nbsp;</b>
-            {room.address}
-          </div>
-          <Link to={`/room-details/${room.id}`}>
-            <div className="view-more justify-end inline-flex hover:cursor-pointer items-center">
-              Details <FaArrowRight/>
+          <div
+            className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
+            onClick={() => locationHandler(room.longitude, room.latitude)}
+            key={room.id}
+          >
+            <div className="Place-name mt-3 flex flex-col ml-2">
+              <h1 className="font-black text-xl mb-2">
+                {room.number_of_rooms}
+                {" rooms "}
+              </h1>
+              <div className="Address ">
+                {" "}
+                <b>Address: &nbsp;</b>
+                {room.address}
+              </div>
+              <Link to={`/room-details/${room.id}`}>
+                <div className="view-more justify-end inline-flex hover:cursor-pointer items-center">
+                  Details <FaArrowRight />
+                </div>
+              </Link>
             </div>
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
-))}
-
+          </div>
+        ))}
       </div>
     </>
   );
