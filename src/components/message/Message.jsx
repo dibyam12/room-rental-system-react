@@ -296,7 +296,7 @@ const MessageComponent = () => {
             ) : error ? (
               <p>Error: {error}</p>
             ) : (
-              <>hii
+              <>
                 {message.map((msg) =>
                   (msg.sender === senderId + 4 ||
                     msg.receiver === senderId + 4) &&

@@ -168,7 +168,9 @@ const List = () => {
         </div>
       </div>
       <div className="room-lists">
-        {filteredRooms.map((room) => (
+        {filteredRooms.filter(room => !room.rented).map((room) => (
+            
+            
           <div
             className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
             onClick={() => locationHandler(room.longitude, room.latitude)}
