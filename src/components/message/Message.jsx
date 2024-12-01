@@ -21,6 +21,7 @@ const MessageComponent = () => {
   }, [dispatch]);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
+  console.log(user,'user')
   const senderId = user.id;
   const { id: receiverId } = useParams();
   const userChatList = [];
@@ -57,6 +58,7 @@ const MessageComponent = () => {
         message: messageInput,
         is_read: false,
       };
+      console.log(senderId,receiverId)
 
       try {
         await sendMessage(messageData);

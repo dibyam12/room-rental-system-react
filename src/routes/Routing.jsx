@@ -23,6 +23,8 @@ import MyRooms from "../components/myrooms/MyRooms.jsx";
 import Users from "../components/users/Users.jsx";
 import ChatDetail from "../components/chatDetail/ChatDetail.jsx";
 import Message from "../components/message/Message.jsx";
+import EsewaPayment from "../components/esewa/Esewa.jsx";
+
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -82,7 +84,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/message/:id",
-            element: <ChatDetail />,
+            element: <Message />,
           },
         ],
       },
@@ -94,7 +96,10 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <Admin />,
       },
-
+{
+        path: "/payment",
+        element: <EsewaPayment />,
+      },
       {
         path: "/register-verify",
         element: <RegisterLogin />,

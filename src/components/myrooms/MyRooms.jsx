@@ -130,14 +130,7 @@ const MyRooms = () => {
           </table>
         </div>
 
-        <input
-          type="radio"
-          name="my_tabs_2"
-          role="tab"
-          className="tab"
-          aria-label="Shared"
-          defaultChecked
-        />
+        
         <div
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
@@ -246,7 +239,7 @@ const MyRooms = () => {
           name="my_tabs_2"
           role="tab"
           className="tab"
-          aria-label="Unshared"
+          aria-label="Rented"
         />
         <div
           role="tabpanel"
@@ -264,10 +257,18 @@ const MyRooms = () => {
               </tr>
             </thead>
             <tbody>
+            {/*{rooms.length>0 && (*/}
+            {/*   rooms.map(room => {*/}
+            {/*     !room.rented && (*/}
+            {/*         <div>{room.address}</div>*/}
+            {/*     )*/}
+            {/*   })*/}
+            {/*    )*/}
+            {/*}*/}
               {rooms && rooms.length > 0 ? (
                 <>
                   {rooms
-                    .filter((room) => !room?.is_shared)
+                    .filter((room) => room?.rented)
                     .map((room) => (
                       <tr key={room.id} className="hover text-center text-black">
                         <td>{ x }</td>
