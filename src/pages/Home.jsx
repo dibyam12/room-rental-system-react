@@ -5,12 +5,15 @@ import Maps from "../components/maps/Maps";
 const Home = () => {
   return (
     <>
-      <div className="container1 flex   flex-col">
-        <div className="flex flex-row ">
-          <div className="list w-1/5 m-5">
+      <div className="container1 flex flex-col h-screen">
+        <div className="flex flex-row h-full">
+          {/* List Section */}
+          <div className="list w-1/5 m-5 overflow-y-auto max-h-full">
             <List />
           </div>
-          <div className="maps flex-grow  ">
+
+          {/* Map Section */}
+          <div className="maps flex-grow sticky top-0">
             <Maps />
           </div>
         </div>

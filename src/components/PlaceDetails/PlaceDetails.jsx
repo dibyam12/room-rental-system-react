@@ -18,7 +18,7 @@ const PlaceDetails = () => {
   const roomDetails = useSelector((state) => state.roomDetails);
   const { rooms } = roomDetails;
   const { roomid } = useParams();
-  console.log(roomid)
+  console.log(rooms,'roomsssssssssss')
   const room = rooms.find((room) => room.id === Number(roomid));
 
   useEffect(() => {

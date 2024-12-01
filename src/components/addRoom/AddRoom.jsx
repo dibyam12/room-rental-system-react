@@ -47,7 +47,7 @@ const AddRoom = () => {
     bhk: 1,
     floorNo: 1,
     houseAge: 1,
-    roomFlat: 'room',
+    roomFlat: 'Room',
     carpetArea: 1,
   });
 

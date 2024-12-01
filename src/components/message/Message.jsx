@@ -21,9 +21,11 @@ const MessageComponent = () => {
   }, [dispatch]);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-  console.log(user,'user')
+  console.log(user,'userrrrrrrrrrrrrrr')
   const senderId = user.id;
   const { id: receiverId } = useParams();
+  console.log(receiverId,'receiverrrrr')
+  // console.log(receiverId,'receiverrrrr')
   const userChatList = [];
   const {
     messages: message,
@@ -254,8 +256,8 @@ const MessageComponent = () => {
                   !userChatList.includes(userchat.receiver) && (
                     <div key={index}>
                         <p className='text-white'>{userChatList.push(userchat.receiver)}</p>
-                      {user.id + 1 === userchat.receiver ||
-                        (user.id + 1 === userchat.sender && (
+                      {user.id + 4 === userchat.receiver ||
+                        (user.id + 4 === userchat.sender && (
                           <div
                             className="chatList hover:cursor-pointer hover:bg-slate-100 w-full"
                             onClick={() =>
@@ -294,14 +296,14 @@ const MessageComponent = () => {
             ) : error ? (
               <p>Error: {error}</p>
             ) : (
-              <>
+              <>hii
                 {message.map((msg) =>
-                  (msg.sender === senderId + 1 ||
-                    msg.receiver === senderId + 1) &&
+                  (msg.sender === senderId + 4 ||
+                    msg.receiver === senderId + 4) &&
                   (msg.sender === Number(receiverId) ||
                     msg.receiver === Number(receiverId)) ? (
                     <div key={msg.id}>
-                      {msg.sender === senderId + 1 ? (
+                      {msg.sender === senderId + 4 ? (
                         // Sender message (chat-end)
                         <div className="chat chat-end">
                           <div className="chat-header font-semibold">
