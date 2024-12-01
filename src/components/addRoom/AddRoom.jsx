@@ -143,13 +143,35 @@ const AddRoom = () => {
 console.log(formData,'dsfdsf')
   function LocationMarrker() {
     useMapEvents({
-      click(e) {
-        const { lat, lng } = e.latlng;
+      async click(e) {
+        const {lat, lng} = e.latlng;
+         try {
+          // Fetch the address using Nominatim API
+          const response = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+          );
+          const data = await response.json();
+          
+          const address = data.display_name || "Unknown Location";
+        
+      
+         
+          formData.address = address;
+          
+          // Log the address
+          console.log("Address:", address);
+        } catch (error) {
+          console.error("Error fetching address:", error);
+        }
         console.log(`Clicked coordinates: Latitude: ${lat}, Longitude: ${lng}`);
-        setPosition({ lat, lng });
+        setPosition({lat, lng});
         setHaveUserLocation(true);
+        
         formData.longitude = lng.toFixed(6);
         formData.latitude = lat.toFixed(6);
+       
+        
+        
       },
     });
     return null;
