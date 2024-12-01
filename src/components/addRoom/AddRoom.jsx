@@ -44,6 +44,11 @@ const AddRoom = () => {
     phoneNumber: 0,
     longitude: longitude,
     latitude: latitude,
+    bhk: 1,
+    floorNo: 1,
+    houseAge: 1,
+    roomFlat: 'room',
+    carpetArea: 1,
   });
 
   const [position, setPosition] = useState(defaultPosition);
@@ -78,6 +83,11 @@ const AddRoom = () => {
     formDatas.append("longitude", formData.longitude);
     formDatas.append("address", formData.address);
     formDatas.append("phoneNumber", formData.phoneNumber);
+    formDatas.append("bhk", formData.bhk);
+    formDatas.append("roomFlat", formData.roomFlat);
+    formDatas.append("floorNo", formData.floorNo);
+    formDatas.append("houseAge", formData.houseAge);
+    formDatas.append("carpetArea", formData.carpetArea);
 
     if (images.image) formDatas.append("image", images.image);
     if (images.image1) formDatas.append("image1", images.image1);
@@ -206,6 +216,71 @@ console.log(formData,'dsfdsf')
           >
             <option value="attached">Attached</option>
             <option value="shared">Shared</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-md font-medium ">BHK</label>
+          <select
+              name="bhk"
+              value={formData.bhk}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-md font-medium ">Floor Number</label>
+          <input
+              type="number"
+              name="floorNo"
+              value={formData.floorNo}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              required
+          />
+        </div>
+        <div>
+          <label className="block text-md font-medium ">House Age </label>
+          <input
+              type="number"
+              name="houseAge"
+              value={formData.houseAge}
+              onChange={handleChange}
+              placeholder='How old is your house? (In years)'
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              required
+          />
+        </div>
+        
+        <div>
+          <label className="block text-md font-medium ">Carpet Area(in sq. ft.)</label>
+          <input
+              type="number"
+              name="carpetArea"
+              value={formData.carpetArea}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+              required
+          />
+        </div>
+        
+        <div>
+          <label className="block text-md font-medium ">Rent Type</label>
+          <select
+              name="roomFlat"
+              value={formData.roomFlat}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+          >
+            <option value="room">Room</option>
+            <option value="flat">Flat</option>
+            <option value="house">House</option>
           </select>
         </div>
         
