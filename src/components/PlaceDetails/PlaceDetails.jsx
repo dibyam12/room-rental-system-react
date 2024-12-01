@@ -139,7 +139,7 @@ const PlaceDetails = () => {
             {/* Additional Details */}
             <div className="details mt-8 p-6 bg-gray-50 rounded-lg shadow-md">
               <h3 className="text-2xl font-semibold mb-4">Additional Details</h3>
-              <p className="text-xl mt-2">Bathroom: {room.bathroom}</p>
+              {/*<p className="text-xl mt-2">Bathroom: {room.bathroom}</p>*/}
               <p className="text-lg">{room.other_details}</p>
             </div>
 

@@ -16,8 +16,10 @@ import { useDispatch, useSelector } from "react-redux";
 import MapCard from "../mapCard/MapCard.jsx";
 import { FaRegFileImage } from "react-icons/fa";
 import { addRooms } from "../../actions/userActions.jsx";
+import {useNavigate} from "react-router-dom";
 
 const AddRoom = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [images, setImages] = useState({
     image: null,
@@ -49,6 +51,7 @@ const AddRoom = () => {
     houseAge: 1,
     roomFlat: 'Room',
     carpetArea: 1,
+    otherDetails:'',
   });
 
   const [position, setPosition] = useState(defaultPosition);
@@ -88,6 +91,7 @@ const AddRoom = () => {
     formDatas.append("floorNo", formData.floorNo);
     formDatas.append("houseAge", formData.houseAge);
     formDatas.append("carpetArea", formData.carpetArea);
+    formDatas.append("otherDetails", formData.otherDetails);
 
     if (images.image) formDatas.append("image", images.image);
     if (images.image1) formDatas.append("image1", images.image1);
@@ -97,6 +101,8 @@ const AddRoom = () => {
       console.log(key, item);
     }
     dispatch(addRooms(formDatas));
+    navigate('/')
+    
   };
 
   const handleGeolocationSuccess = useCallback((pos) => {
@@ -392,14 +398,16 @@ console.log(formData,'dsfdsf')
           </MapContainer>
         </div>
         
-        <div className="flex flex-col">
-          <label className=" text-lg  w-fullfont-medium mb-1">
-            Other details
-          </label>
-          <textarea
-              className="textarea textarea-info w-full text-black"
-              placeholder="Add extra Information about your rooms "
-          ></textarea>
+        <div>
+          <label className="block text-md font-medium ">Other Details</label>
+          
+          <input
+              type="text"
+              name="otherDetails"
+              value={formData.otherDetails}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+          />
         </div>
         
         <div className="flex justify-end mt-5">
