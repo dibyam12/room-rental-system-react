@@ -136,7 +136,7 @@ const List = () => {
     // Show all rooms if no filters are selected
     if (filters.length === 0) return true;
     // Filter rooms based on selected filters
-    return filters.includes(room.type); // Assuming room.type matches the filter values (e.g., "Room", "Floor", "House")
+    return filters.includes(room.roomFlat); // Assuming room.type matches the filter values (e.g., "Room", "Floor", "House")
   });
 
   return (
@@ -150,7 +150,8 @@ const List = () => {
             tabIndex={0}
             className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
           >
-            {["Room", "Floor", "House"].map((filter) => (
+            {/*///////////////////////////////////////////////////*/}
+            {["room", "flat", "house"].map((filter) => (
               <li key={filter}>
                 <a>
                   <input
@@ -167,7 +168,9 @@ const List = () => {
         </div>
       </div>
       <div className="room-lists">
-        {filteredRooms.map((room) => (
+        {filteredRooms.filter(room => !room.rented).map((room) => (
+            
+            
           <div
             className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
             onClick={() => locationHandler(room.longitude, room.latitude)}

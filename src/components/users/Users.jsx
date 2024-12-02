@@ -91,23 +91,33 @@ const Users = () => {
           <div>
             <h2 className="card-title">{userMain?.first_name}</h2>
             <p>
+              <strong>Full name :</strong>
+              &nbsp;{userMain?.registerVerify?.name} <br/>
               <strong>Username :</strong>
-              &nbsp;{userMain?.username} <br />
+              &nbsp;{userMain?.username} <br/>
               <strong>User Type :</strong>
-              &nbsp; {userMain?.profile?.userType} <br />
+              &nbsp; {userMain?.profile?.userType} <br/>
+              <strong>Gender :</strong>
+              &nbsp;{userMain?.registerVerify?.gender} <br/>
+              <strong>Occupation :</strong>
+              &nbsp;{userMain?.registerVerify?.occupation} <br/>
+              <strong>Marital Status :</strong>
+              &nbsp;{userMain?.registerVerify?.marital_status} <br/>
+              <strong>Father name :</strong>
+              &nbsp;{userMain?.registerVerify?.father_name} <br/>
               <strong>E-mail :</strong>
-              &nbsp; {userMain?.email} <br />
+              &nbsp; {userMain?.email} <br/>
               <strong>Date Of Birth:</strong>
-              &nbsp; {userMain?.registerVerify?.date_of_birth} <br />
+              &nbsp; {userMain?.registerVerify?.date_of_birth} <br/>
               
-           
-              <br />
-              <br />
+              
+              <br/>
+              <br/>
               <strong className="card-title">Verification Documents: </strong>
             </p>{" "}
-            <br />
+            <br/>
             {userMain?.registerVerify?.passportPhoto && (
-              <>
+                <>
                 <strong>Photo: </strong>
                 <div className=" w-[20%] h-[20%] overflow-hidden ml-[20%]  rounded-box">
                   <img

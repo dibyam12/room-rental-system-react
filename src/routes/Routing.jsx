@@ -23,7 +23,7 @@ import MyRooms from "../components/myrooms/MyRooms.jsx";
 import Users from "../components/users/Users.jsx";
 import ChatDetail from "../components/chatDetail/ChatDetail.jsx";
 import Message from "../components/message/Message.jsx";
-import EsewaPayment from "../components/esewa/Esewa.jsx";
+// import EsewaPayment from "../components/esewa/Esewa.jsx";
 
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
@@ -96,10 +96,10 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <Admin />,
       },
-{
-        path: "/payment",
-        element: <EsewaPayment />,
-      },
+// {
+//         path: "/payment",
+//         element: <EsewaPayment />,
+//       },
       {
         path: "/register-verify",
         element: <RegisterLogin />,

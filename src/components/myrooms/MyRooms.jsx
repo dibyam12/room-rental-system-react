@@ -45,6 +45,7 @@ const MyRooms = () => {
           role="tab"
           className="tab !w-max"
           aria-label="All rooms"
+          defaultChecked
         />
         <div
           role="tabpanel"
@@ -65,7 +66,7 @@ const MyRooms = () => {
             <tbody>
               {rooms?.map((room) => (
                 <tr key={room.id} className="hover text-center text-black">
-                  <td>{ x }</td>
+                  <td>{ x=x+1 }</td>
                   <td>{room.number_of_rooms}</td>
                   <td>{room.rent}</td>
                   <td>{room.address}</td>
@@ -271,7 +272,7 @@ const MyRooms = () => {
                     .filter((room) => room?.rented)
                     .map((room) => (
                       <tr key={room.id} className="hover text-center text-black">
-                        <td>{ x }</td>
+                        <td>{ x=x+1 }</td>
                         <td>{room.number_of_rooms}</td>
                         <td>{room.rent}</td>
                         <td>{room.address}</td>

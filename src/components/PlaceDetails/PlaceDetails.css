@@ -1,3 +1,4 @@
+/* PlaceDetails.css */
 .image-slider .slick-next {
   right: 10px;
   color: rgb(8 145 178);
@@ -10,7 +11,7 @@
 .image-slider {
   display: flex;
   width: 100%;
-  height: 90vh;
+  height: 60vh; /* Adjusted to 60vh */
   overflow: hidden;
 }
 
@@ -21,26 +22,44 @@
 }
 
 .image-slider img {
-  width: 75%;
-  margin: auto;
-  height: auto;
-  object-fit: cover;
+  max-width: 45px; /* Maximum width */
+  max-height: 45px; /* Maximum height */
+  object-fit: cover; /* Ensures the image covers the container without stretching */
 }
 
+/* Contact Options */
 .details .call-message .call .icon,
 .details .call-message .message .icon {
   font-size: 1.5rem;
-  /* You can adjust the size as needed */
 }
+
 
 .details .call-message :hover {
   cursor: pointer;
 }
-/* To ensure consistency, also apply styles to the container */
+
 .details .call-message .call,
 .details .call-message .message {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem; /* Adjust this size as needed */
+  font-size: 2rem;
+}
+
+
+.carousel {
+  height: 60vh;
+}
+
+.carousel-item {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  max-width: 950px;
+  max-height: 900px;
+  /*object-fit: cover;*/
 }
