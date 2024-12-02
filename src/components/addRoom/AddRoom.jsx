@@ -314,17 +314,6 @@ console.log(formData,'dsfdsf')
           />
         </div>
         
-        <div>
-          <label className="block text-md font-medium ">Address</label>
-          
-          <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-          />
-        </div>
         
         <div>
           <label className=" text-lg font-medium mb-0">
@@ -370,6 +359,17 @@ console.log(formData,'dsfdsf')
                 onChange={(e) => handleImageChange(e, "image3")}
             />
           </div>
+        </div>
+        <div>
+          <label className="block text-md font-medium ">Address</label>
+          
+          <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+          />
         </div>
         <div>
           <label className="block text-md font-medium ">
