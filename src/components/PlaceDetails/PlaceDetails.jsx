@@ -3,13 +3,14 @@ import { useState, useEffect, useRef } from "react";
 import { IoCall } from "react-icons/io5";
 import { MdMessage } from "react-icons/md";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { backendUrl } from "../../constants/userConstants.jsx";
 import noImage from "../../assets/no_image.png";
 import "./PlaceDetails.css";
 
 const PlaceDetails = () => {
+  const navigate = useNavigate()
   const [rentFrom, setRentFrom] = useState('');
   const [rentTo, setRentTo] = useState('');
   const roomDetails = useSelector((state) => state.roomDetails);
@@ -37,6 +38,8 @@ const PlaceDetails = () => {
         },
       };
       await axios.post(`${backendUrl}/handle-rent/`, formData, config);
+      alert('room rented')
+      navigate('/')
     } catch (error) {
       alert("An error occurred: " + error.message);
     }
