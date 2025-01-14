@@ -1,6 +1,5 @@
 // import React from "react";
 // import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 // import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 import "./Header.css";
@@ -30,38 +29,27 @@ const Header = () => {
           </Link>
         </div>
         <div className="contents">
-          {/* <div className="search-bar inline-flex items-center">
-            <input
-              type="text"
-              className="searchBar w-96 p-3 text-black  focus:outline-none rounded-full  "
-            />
-            <button className=" bg-cyan-600 font-semi-old border text-white p-3  ml-1 hover:bg-white rounded-full   border-white hover:text-cyan-600 hover:outline-none">
-              <FaSearch className="text-xl" />
-            </button>
-          </div> */}
           {/* </Autocomplete> */}
 
           <div className="buttons">
             {console.log(userInfo)}
-            
-            {(
-              userInfo?.profile?.userType === "Admin") && (
-                <Link to="/admin">
-                  <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                    Admin
-                  </button>
-                </Link>
-              )}
-            
+
+            {userInfo?.profile?.userType === "Admin" && (
+              <Link to="/admin">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  Admin
+                </button>
+              </Link>
+            )}
 
             {(userInfo?.profile?.userType === "Landlord" ||
               userInfo?.profile?.userType === "Admin") && (
-                <Link to="/myrooms">
-                  <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                    My Rooms
-                  </button>
-                </Link>
-              )}
+              <Link to="/myrooms">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  My Rooms
+                </button>
+              </Link>
+            )}
 
             {userInfo && (
               <Link to="/message/1">
@@ -72,12 +60,12 @@ const Header = () => {
             )}
             {(userInfo?.profile?.userType === "Landlord" ||
               userInfo?.profile?.userType === "Admin") && (
-                <Link to="/add-room">
-                  <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                    Add Rent
-                  </button>
-                </Link>
-              )}
+              <Link to="/add-room">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  Add Rent
+                </button>
+              </Link>
+            )}
 
             {userInfo && (
               <Link to="/profile">

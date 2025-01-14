@@ -98,6 +98,7 @@ import { FaArrowRight, FaFilter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { fetchRoomDetails } from "../../actions/roomActions.jsx";
 import { useDispatch, useSelector } from "react-redux";
+import { FaSearch } from "react-icons/fa";
 
 const List = () => {
   const dispatch = useDispatch();
@@ -141,6 +142,16 @@ const List = () => {
 
   return (
     <>
+      <div className="search-bar inline-flex items-center m-1">
+        <input
+          placeholder="Search address"
+          type="text"
+          className="searchBar w-[80%] p-2 text-black outline   rounded-full  "
+        />
+        <button className=" bg-cyan-600 font-semi-old border text-white p-2  ml-1 hover:bg-white rounded-full   border-white hover:text-cyan-600 hover:outline-none">
+          <FaSearch className="text-xl" />
+        </button>
+      </div>
       <div className="filter inline-flex items-center text-base hover:cursor-pointer mb-2">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn mt-0">
@@ -168,30 +179,30 @@ const List = () => {
         </div>
       </div>
       <div className="room-lists">
-        {filteredRooms.filter(room => !room.rented).map((room) => (
-            
-            
-          <div
-            className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
-            onClick={() => locationHandler(room.longitude, room.latitude)}
-            key={room.id}
-          >
-            <div className="Place-name mt-3 flex flex-col ml-2">
-              <h1 className="font-black text-xl mb-2">
-                {room.number_of_rooms} rooms
-              </h1>
-              <div className="Address">
-                <b>Address: &nbsp;</b>
-                {room.address}
-              </div>
-              <Link to={`/room-details/${room.id}`}>
-                <div className="view-more justify-end inline-flex hover:cursor-pointer items-center">
-                  Details <FaArrowRight />
+        {filteredRooms
+          .filter((room) => !room.rented)
+          .map((room) => (
+            <div
+              className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
+              onClick={() => locationHandler(room.longitude, room.latitude)}
+              key={room.id}
+            >
+              <div className="Place-name mt-3 flex flex-col ml-2">
+                <h1 className="font-black text-xl mb-2">
+                  {room.number_of_rooms} rooms
+                </h1>
+                <div className="Address">
+                  <b>Address: &nbsp;</b>
+                  {room.address}
                 </div>
-              </Link>
+                <Link to={`/room-details/${room.id}`}>
+                  <div className="view-more justify-end inline-flex hover:cursor-pointer items-center">
+                    Details <FaArrowRight />
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </>
   );

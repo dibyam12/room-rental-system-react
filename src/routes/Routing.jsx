@@ -24,8 +24,8 @@ import Users from "../components/users/Users.jsx";
 import ChatDetail from "../components/chatDetail/ChatDetail.jsx";
 import Message from "../components/message/Message.jsx";
 import PaymentSuccess from "../components/paymentSuccess/PaymentSuccess.jsx";
+import PaymentHistory from "../pages/paymentHistory/PaymentHistory.jsx";
 // import EsewaPayment from "../components/esewa/Esewa.jsx";
-
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
 // 1st way////////////////////
@@ -49,11 +49,11 @@ const router = createBrowserRouter([
           // </PrivateRoute>
         ),
       },
-        {
+      {
         path: "/paymentsuccess",
         element: (
           // <PrivateRoute>
-        <PaymentSuccess />
+          <PaymentSuccess />
           // </PrivateRoute>
         ),
       },
@@ -105,10 +105,10 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <Admin />,
       },
-// {
-//         path: "/payment",
-//         element: <EsewaPayment />,
-//       },
+      {
+        path: "/payment-history",
+        element: <PaymentHistory />,
+      },
       {
         path: "/register-verify",
         element: <RegisterLogin />,
