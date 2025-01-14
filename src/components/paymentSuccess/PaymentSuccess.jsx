@@ -50,7 +50,8 @@ const PaymentSuccess = () => {
       alert("Room rented successfully!");
       navigate("/");
     } catch (error) {
-      alert("An error occurred: " + error.message);
+      // navigate("/");
+      console.log('error')
     }
   };
 
