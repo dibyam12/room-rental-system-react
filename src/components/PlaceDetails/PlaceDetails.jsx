@@ -51,6 +51,12 @@ const PlaceDetails = () => {
       formData.append("rent_to", rentTo);
       formData.append("rent", true);
       const paymentData = new FormData();
+      const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
+      const configp = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        };
       paymentData.append("rent_id", roomid)
       paymentData.append("total_amount", esewaData.total_amount)
       paymentData.append("transaction_uuid", esewaData.transaction_uuid)
@@ -60,7 +66,7 @@ const PlaceDetails = () => {
         },
       };
       await axios.post(`${backendUrl}/handle-rent/`, formData, config);
-      await axios.post(`${backendUrl}/paymentverify/`, paymentData, config);
+      await axios.post(`${backendUrl}/paymentverify/`, paymentData, configp);
       alert('Room rented');
       navigate('/');
     } catch (error) {
