@@ -12,6 +12,7 @@ import CryptoJS from "crypto-js";
 
 const PlaceDetails = () => {
   const navigate = useNavigate();
+   const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
   const [rentFrom, setRentFrom] = useState('');
   const [rentTo, setRentTo] = useState('');
   const [dateDifference, setDateDifference] = useState(0);
@@ -31,6 +32,8 @@ const PlaceDetails = () => {
     rent_id:'0',
     
   });
+  
+  
 
   const roomDetails = useSelector((state) => state.roomDetails);
   const { rooms } = roomDetails;
@@ -51,7 +54,7 @@ const PlaceDetails = () => {
       formData.append("rent_to", rentTo);
       formData.append("rent", true);
       const paymentData = new FormData();
-      const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
+     
       const configp = {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -100,9 +103,13 @@ const PlaceDetails = () => {
         ...prevData,
         total_amount: totalAmount,
         amount: totalAmount,
+        // success_url: `http://localhost:5173/paymentsuccess`,
+        // success_url: `http://localhost:5173/paymentsuccess/${paymentUrl}`,
+         success_url: `http://localhost:5173/paymentsuccess/?amount=${encodeURIComponent(totalAmount)}&transaction_uuid=${encodeURIComponent(prevData.transaction_uuid)}&roomid=${encodeURIComponent(roomid)}&rent_id=${encodeURIComponent(prevData.rent_id)}&rent_from=${encodeURIComponent(rentFrom)}&rent_to=${encodeURIComponent(rentTo)}`,
       }));
+      
     }
-  }, [dateDifference, room]);
+  }, [dateDifference]);
 
   // Update signature whenever esewaData changes
   useEffect(() => {
@@ -112,8 +119,9 @@ const PlaceDetails = () => {
       ...prevData,
       signature: hashedSignature,
     }));
-  }, [esewaData]);
-
+  }, [esewaData.total_amount,esewaData.transaction_uuid]);
+const paymentUrl = `?amount=${esewaData.total_amount}&transaction_uuid=${esewaData.transaction_uuid}&roomid=${roomid}&rent_from=${rentFrom}&rent_to=${rentTo}&token=${token}`
+  console.log(paymentUrl)
   return (
     <>
       {room ? (
@@ -225,7 +233,7 @@ const PlaceDetails = () => {
             <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
               <input type="text" name="amount" value={esewaData.amount} required/>
               <input type="text" name="tax_amount" value={esewaData.tax_amount} required/>
-              <input type="text" name="total_amount" value={esewaData.total_amount} required/>
+              <input type="text" name="total_amount" value={esewaData.total_amount}required/>
               <input type="text" name="transaction_uuid" value={esewaData.transaction_uuid} required/>
               <input type="text" name="product_code" value={esewaData.product_code} required/>
               <input type="text" name="product_service_charge" value={esewaData.product_service_charge} required/>

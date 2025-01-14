@@ -23,6 +23,7 @@ import MyRooms from "../components/myrooms/MyRooms.jsx";
 import Users from "../components/users/Users.jsx";
 import ChatDetail from "../components/chatDetail/ChatDetail.jsx";
 import Message from "../components/message/Message.jsx";
+import PaymentSuccess from "../components/paymentSuccess/PaymentSuccess.jsx";
 // import EsewaPayment from "../components/esewa/Esewa.jsx";
 
 
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
         element: (
           // <PrivateRoute>
           <MyRooms />
+          // </PrivateRoute>
+        ),
+      },
+        {
+        path: "/paymentsuccess",
+        element: (
+          // <PrivateRoute>
+        <PaymentSuccess />
           // </PrivateRoute>
         ),
       },
