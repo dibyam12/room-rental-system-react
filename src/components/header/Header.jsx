@@ -43,15 +43,25 @@ const Header = () => {
 
           <div className="buttons">
             {console.log(userInfo)}
+            
+            {(
+              userInfo?.profile?.userType === "Admin") && (
+                <Link to="/admin">
+                  <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                    Admin
+                  </button>
+                </Link>
+              )}
+            
 
-            {userInfo?.profile?.userType === "Landlord" ||
-              (userInfo?.profile?.userType === "Admin" && (
+            {(userInfo?.profile?.userType === "Landlord" ||
+              userInfo?.profile?.userType === "Admin") && (
                 <Link to="/myrooms">
                   <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                     My Rooms
                   </button>
                 </Link>
-              ))}
+              )}
 
             {userInfo && (
               <Link to="/message/1">
@@ -60,14 +70,14 @@ const Header = () => {
                 </button>
               </Link>
             )}
-            {userInfo?.profile?.userType === "Landlord" ||
-              (userInfo?.profile?.userType === "Admin" && (
+            {(userInfo?.profile?.userType === "Landlord" ||
+              userInfo?.profile?.userType === "Admin") && (
                 <Link to="/add-room">
                   <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                     Add Rent
                   </button>
                 </Link>
-              ))}
+              )}
 
             {userInfo && (
               <Link to="/profile">
