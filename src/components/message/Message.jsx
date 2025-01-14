@@ -22,7 +22,7 @@ const MessageComponent = () => {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   console.log(user,'userrrrrrrrrrrrrrr')
-  const senderId = user.id;
+  const senderId = user.user;
   const { id: receiverId } = useParams();
   console.log(receiverId,'receiverrrrr')
   // console.log(receiverId,'receiverrrrr')
@@ -256,11 +256,11 @@ const MessageComponent = () => {
                   .filter((chat) => {
                     // Determine if the logged-in user is the sender or receiver
                     const isUserInvolved =
-                        user.id + 4 === chat.receiver || user.id + 4 === chat.sender;
+                        user.user === chat.receiver || user.user === chat.sender;
                     
                     // Add the counterpart to the set (other user's ID)
                     const counterpart =
-                        user.id + 4 === chat.sender ? chat.receiver : chat.sender;
+                        user.user === chat.sender ? chat.receiver : chat.sender;
                     
                     // Ensure only unique chats are processed
                     if (isUserInvolved && !userChatSet.has(counterpart)) {
@@ -271,7 +271,7 @@ const MessageComponent = () => {
                   });
               
               return uniqueChats.map((chat, index) => {
-                const isUserSender = user.id + 4 === chat.sender;
+                const isUserSender = user.user === chat.sender;
                 
                 // Display the counterpart's name and latest message
                 return (
