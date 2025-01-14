@@ -13,6 +13,8 @@
     "@react-google-maps/api": "^2.19.3",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.2",
+    "crypto-js": "^4.2.0",
+    "cryptojs": "^2.5.3",
     "dayjs": "^1.11.13",
     "google-map-react": "^2.2.1",
     "jwt-decode": "^4.0.0",
@@ -30,7 +32,8 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "slick-carousel": "^1.8.1",
-    "sweetalert2": "^11.12.4"
+    "sweetalert2": "^11.6.13",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
