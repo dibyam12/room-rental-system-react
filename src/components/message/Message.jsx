@@ -317,12 +317,12 @@ const MessageComponent = () => {
                   {message
                       .filter(
                           (msg) =>
-                              (msg.sender === senderId + 4 && msg.receiver === Number(receiverId)) ||
-                              (msg.receiver === senderId + 4 && msg.sender === Number(receiverId))
+                              (msg.sender === senderId && msg.receiver === Number(receiverId)) ||
+                              (msg.receiver === senderId && msg.sender === Number(receiverId))
                       )
                       .map((msg) => (
                           <div key={msg.id}>
-                            {msg.sender === senderId + 4 ? (
+                            {msg.sender === senderId ? (
                                 // Sender message (chat-end)
                                 <div className="chat chat-end">
                                   <div className="chat-header font-semibold">
