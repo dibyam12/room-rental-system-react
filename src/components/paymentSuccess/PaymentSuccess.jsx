@@ -56,7 +56,7 @@ const PaymentSuccess = () => {
   };
 
   useEffect(() => {
-    handleRent(); // Call the function when the component is mounted
+    handleRent();
   }, []);
   
     return (
