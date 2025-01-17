@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const List = () => {
   const dispatch = useDispatch();
   const roomDetails = useSelector((state) => state.roomDetails);
-  const { rooms, loading, error } = roomDetails;
+  const { rooms = [], loading, error } = roomDetails; // Default to empty array if `rooms` is undefined
 
   const [filters, setFilters] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
@@ -29,12 +29,11 @@ const List = () => {
   };
 
   const handleFilterChange = (event) => {
-    const value = event.target.value;
-    setFilters(
-      (prevFilters) =>
-        prevFilters.includes(value)
-          ? prevFilters.filter((filter) => filter !== value) // Remove filter if already selected
-          : [...prevFilters, value] // Add filter if not already selected
+    const value = event.target.value.toLowerCase(); // Ensure lowercase comparison
+    setFilters((prevFilters) =>
+      prevFilters.includes(value)
+        ? prevFilters.filter((filter) => filter !== value) // Remove filter if already selected
+        : [...prevFilters, value] // Add filter if not already selected
     );
   };
 
@@ -43,13 +42,13 @@ const List = () => {
   };
 
   const filteredRooms = rooms.filter((room) => {
-    // Filter rooms based on search term and selected filters
+    const roomFlatType = room.roomFlat ? room.roomFlat.toLowerCase() : ""; // Normalize and handle undefined
     const matchesSearch =
       room.address.toLowerCase().includes(searchTerm); // Check if the address contains the search term
     const matchesFilters =
-      filters.length === 0 || filters.includes(room.roomFlat); // Apply filters if any
+      filters.length === 0 || filters.includes(roomFlatType); // Apply filters if any
 
-    return matchesSearch && matchesFilters;
+    return matchesSearch && matchesFilters && !room.rented; // Ensure room is not rented
   });
 
   return (
@@ -82,7 +81,7 @@ const List = () => {
                     type="checkbox"
                     value={filter}
                     onChange={handleFilterChange}
-                    checked={filters.includes(filter)}
+                    checked={filters.includes(filter.toLowerCase())}
                   />
                   {filter}
                 </a>
@@ -92,30 +91,28 @@ const List = () => {
         </div>
       </div>
       <div className="room-lists">
-        {filteredRooms
-          .filter((room) => !room.rented) // Filter out rented rooms
-          .map((room) => (
-            <div
-              className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
-              onClick={() => locationHandler(room.longitude, room.latitude)}
-              key={room.id}
-            >
-              <div className="Place-name mt-3 flex flex-col ml-2">
-                <h1 className="font-black text-xl mb-2">
-                  {room.number_of_rooms} rooms
-                </h1>
-                <div className="Address">
-                  <b>Address: &nbsp;</b>
-                  {room.address}
-                </div>
-                <Link to={`/room-details/${room.id}`}>
-                  <div className="view-more justify-end inline-flex hover:cursor-pointer items-center">
-                    Details <FaArrowRight />
-                  </div>
-                </Link>
+        {filteredRooms.map((room) => (
+          <div
+            className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
+            onClick={() => locationHandler(room.longitude, room.latitude)}
+            key={room.id}
+          >
+            <div className="Place-name mt-3 flex flex-col ml-2">
+              <h1 className="font-black text-xl mb-2">
+                {room.number_of_rooms} rooms
+              </h1>
+              <div className="Address">
+                <b>Address: &nbsp;</b>
+                {room.address}
               </div>
+              <Link to={`/room-details/${room.id}`}>
+                <div className="view-more justify-end inline-flex hover:cursor-pointer items-center">
+                  Details <FaArrowRight />
+                </div>
+              </Link>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </>
   );
