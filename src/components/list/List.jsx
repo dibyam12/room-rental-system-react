@@ -30,10 +30,11 @@ const List = () => {
 
   const handleFilterChange = (event) => {
     const value = event.target.value.toLowerCase(); // Ensure lowercase comparison
-    setFilters((prevFilters) =>
-      prevFilters.includes(value)
-        ? prevFilters.filter((filter) => filter !== value) // Remove filter if already selected
-        : [...prevFilters, value] // Add filter if not already selected
+    setFilters(
+      (prevFilters) =>
+        prevFilters.includes(value)
+          ? prevFilters.filter((filter) => filter !== value) // Remove filter if already selected
+          : [...prevFilters, value] // Add filter if not already selected
     );
   };
 
@@ -43,8 +44,7 @@ const List = () => {
 
   const filteredRooms = rooms.filter((room) => {
     const roomFlatType = room.roomFlat ? room.roomFlat.toLowerCase() : ""; // Normalize and handle undefined
-    const matchesSearch =
-      room.address.toLowerCase().includes(searchTerm); // Check if the address contains the search term
+    const matchesSearch = room.address.toLowerCase().includes(searchTerm); // Check if the address contains the search term
     const matchesFilters =
       filters.length === 0 || filters.includes(roomFlatType); // Apply filters if any
 
@@ -93,7 +93,7 @@ const List = () => {
       <div className="room-lists">
         {filteredRooms.map((room) => (
           <div
-            className="card flex outline rounded-md h-1/5 w-full m-2 hover:cursor-pointer"
+            className="card flex outline rounded-md h-1/5 w-[95%] m-2 hover:cursor-pointer"
             onClick={() => locationHandler(room.longitude, room.latitude)}
             key={room.id}
           >
