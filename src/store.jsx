@@ -8,6 +8,7 @@ import {
 import { configureStore } from "@reduxjs/toolkit";
 import coordinateReducer, {addRoomReducer, roomDetailReducer, roomDetailsReducer} from "./reducers/roomReducers.jsx";
 import chatReducer, {chatUsersReducer} from "./reducers/chatReducer.jsx";
+import {paymentReducer} from "./reducers/paymentReducers.jsx";
 // import {userListReducer} from "./actions/userActions.jsx";
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -27,6 +28,7 @@ const store = configureStore({
     coordinates: coordinateReducer,
     chat:chatReducer,
     chatUsers:chatUsersReducer,
+    paymentHistory:paymentReducer,
   },
 });
 
