@@ -10,15 +10,27 @@ import { useNavigate, useParams } from "react-router-dom";
 import { fetchRegistrationDetail } from "../../actions/userActions.jsx";
 import { fetchMessages } from "../../actions/chatActions.jsx";
 import { IoSendOutline } from "react-icons/io5";
+import {useSearchParams} from "react-router-dom";
 const MessageComponent = () => {
   const registrationDetail = useSelector((state) => state.registrationDetail);
   const { user } = registrationDetail;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams()
+  const msgs = searchParams.get('m')
 
   useEffect(() => {
     dispatch(fetchChatUsers());
   }, [dispatch]);
+  
+  useEffect(() => {
+    if (msgs) {
+      setMessageInput(msgs); // Set the input value to msgs
+      handleSendMessage(); // Automatically trigger the send button
+    }
+  }, [msgs]);
+  
+  
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   console.log(user, "userrrrrrrrrrrrrrr");
@@ -67,11 +79,25 @@ const MessageComponent = () => {
         setMessageInput("");
         const updatedMessages = await getMessages(senderId, Number(receiverId));
         setMessages(updatedMessages);
+        
+      navigate(`/message/${receiverId}`)
+        console.log('nabigation hahahaha')
       } catch (error) {
         console.error("Error sending message:", error);
+        navigate(`/message/${receiverId}`)
+        console.log('nabigation hahahaha')
       }
     }
   };
+    useEffect(() => {
+    if (msgs) {
+      setMessageInput(msgs); // Set the input value to `msgs`
+      const sendMessageAfterInput = async () => {
+        await handleSendMessage(); // Trigger send after input updates
+      };
+      sendMessageAfterInput();
+    }
+  }, [msgs, senderId, receiverId]);
 
   return (
     // <div>
@@ -365,7 +391,7 @@ const MessageComponent = () => {
 
           {/* Footer: Input Box */}
           <div className="footer h-[72px] bg-cyan-600 flex items-center sticky bottom-0  pb-3z-10">
-            <input
+          <input
               type="text"
               value={messageInput}
               className="m-2 w-[90%] p-4 border-0 shadow-md rounded-full bg-light outline-none"

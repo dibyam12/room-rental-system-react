@@ -12,6 +12,7 @@ const PaymentSuccess = () => {
   const dialogRef = useRef(null);
   const rentFrom = searchParams.get("rent_from");
   const rentToo = searchParams.get("rent_to");
+  const room_seller = searchParams.get("room_seller");
   const rentTo = rentToo.split("?")[0];
   const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
   //
@@ -48,19 +49,28 @@ const PaymentSuccess = () => {
       await axios.post(`${backendUrl}/paymentverify/`, paymentData, configp);
 
       alert("Room rented successfully!");
-      navigate("/");
+      navigate(
+  `/message/${room_seller}/?m=${encodeURIComponent(
+    "I have rented your room and will visit you soon."
+  )}`
+);
     } catch (error) {
-      // navigate("/");
+     navigate(
+  `/message/${room_seller}/?m=${encodeURIComponent(
+    "I have rented your room and will visit you soon."
+  )}`
+);
       console.log("error");
-      console.error("Error during rent or payment verification:", error);
-      alert("An error occurred while processing the rent. Please try again.");
+    
     }
   };
 
   useEffect(() => {
-    const dialog = dialogRef.current;
-    if (dialog) dialog.showModal();
-    handleRent(); // Call the function when the component is mounted
+
+    handleRent();
+
+    
+
   }, []);
 
   return (

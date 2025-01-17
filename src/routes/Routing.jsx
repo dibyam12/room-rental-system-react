@@ -57,6 +57,14 @@ const router = createBrowserRouter([
           // </PrivateRoute>
         ),
       },
+        {
+        path: "/paymenthistory",
+        element: (
+          // <PrivateRoute>
+          <PaymentHistory />
+          // </PrivateRoute>
+        ),
+      },
 
       {
         path: "/room-details/:roomid",
