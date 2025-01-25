@@ -12,6 +12,9 @@ const PaymentHistory = () => {
   const { paymentHistory, loading, error } = paymentState;
   const { users } = userList;
   const {rooms} = roomDetails
+  const bookedRooms = rooms.filter((room) => room.rented === true);
+  console.log(bookedRooms)
+  
   console.log(users)
   // console.log((users.find(user => user.id === 1)).username)
   let count = 0;
