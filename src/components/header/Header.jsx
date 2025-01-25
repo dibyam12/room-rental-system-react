@@ -35,15 +35,28 @@ const Header = () => {
             {console.log(userInfo)}
 
             {userInfo?.profile?.userType === "Admin" && (
+              <>
               <Link to="/admin">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                  Admin
+                  All Users
                 </button>
               </Link>
+              <Link to="/paymenthistory">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  Payment History
+                </button>
+              </Link>
+              <Link to="/">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  Rooms
+                </button>
+              </Link>
+              </>
+              
             )}
 
-            {(userInfo?.profile?.userType === "Landlord" ||
-              userInfo?.profile?.userType === "Admin") && (
+            {/* {(userInfo?.profile?.userType === "Admin" || */}
+            {(  userInfo?.profile?.userType === "Landlord" ) && (
               <Link to="/myrooms">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   My Rooms
@@ -51,15 +64,15 @@ const Header = () => {
               </Link>
             )}
 
-            {userInfo && (
+            {(userInfo?.profile?.userType === "Landlord" || userInfo?.profile?.userType === "Tenant") && (
               <Link to="/message/1">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Message
                 </button>
               </Link>
             )}
-            {(userInfo?.profile?.userType === "Landlord" ||
-              userInfo?.profile?.userType === "Admin") && (
+            {/* {(userInfo?.profile?.userType === "Landlord" || */}
+              {(userInfo?.profile?.userType === "Landlord") && (
               <Link to="/add-room">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Add Rent

@@ -16,10 +16,10 @@ import { useDispatch, useSelector } from "react-redux";
 import MapCard from "../mapCard/MapCard.jsx";
 import { FaRegFileImage } from "react-icons/fa";
 import { addRooms } from "../../actions/userActions.jsx";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddRoom = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [images, setImages] = useState({
     image: null,
@@ -49,9 +49,9 @@ const AddRoom = () => {
     bhk: 1,
     floorNo: 1,
     houseAge: 1,
-    roomFlat: 'Room',
+    roomFlat: "Room",
     carpetArea: 1,
-    otherDetails:'',
+    otherDetails: "",
   });
 
   const [position, setPosition] = useState(defaultPosition);
@@ -101,8 +101,7 @@ const AddRoom = () => {
       console.log(key, item);
     }
     dispatch(addRooms(formDatas));
-    navigate('/')
-    
+    navigate("/");
   };
 
   const handleGeolocationSuccess = useCallback((pos) => {
@@ -156,38 +155,33 @@ const AddRoom = () => {
       setZoom(15);
     }
   }, [longitude, latitude]);
-console.log(formData,'dsfdsf')
+  console.log(formData, "dsfdsf");
   function LocationMarrker() {
     useMapEvents({
       async click(e) {
-        const {lat, lng} = e.latlng;
-         try {
+        const { lat, lng } = e.latlng;
+        try {
           // Fetch the address using Nominatim API
           const response = await fetch(
-              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
           );
           const data = await response.json();
-          
+
           const address = data.display_name || "Unknown Location";
-        
-      
-         
+
           formData.address = address;
-          
+
           // Log the address
           console.log("Address:", address);
         } catch (error) {
           console.error("Error fetching address:", error);
         }
         console.log(`Clicked coordinates: Latitude: ${lat}, Longitude: ${lng}`);
-        setPosition({lat, lng});
+        setPosition({ lat, lng });
         setHaveUserLocation(true);
-        
+
         formData.longitude = lng.toFixed(6);
         formData.latitude = lat.toFixed(6);
-       
-        
-        
       },
     });
     return null;
@@ -203,22 +197,22 @@ console.log(formData,'dsfdsf')
         <div>
           <label className="block text-md font-medium ">Number of Rooms</label>
           <input
-              type="number"
-              name="rooms"
-              value={formData.rooms}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-              required
+            type="number"
+            name="rooms"
+            value={formData.rooms}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            required
           />
         </div>
-        
+
         <div>
           <label className="block text-md font-medium ">Bathroom Type</label>
           <select
-              name="bathroomType"
-              value={formData.bathroomType}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            name="bathroomType"
+            value={formData.bathroomType}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           >
             <option value="attached">Attached</option>
             <option value="shared">Shared</option>
@@ -227,10 +221,10 @@ console.log(formData,'dsfdsf')
         <div>
           <label className="block text-md font-medium ">BHK</label>
           <select
-              name="bhk"
-              value={formData.bhk}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            name="bhk"
+            value={formData.bhk}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -243,132 +237,133 @@ console.log(formData,'dsfdsf')
         <div>
           <label className="block text-md font-medium ">Floor Number</label>
           <input
-              type="number"
-              name="floorNo"
-              value={formData.floorNo}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-              required
+            type="number"
+            name="floorNo"
+            value={formData.floorNo}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            required
           />
         </div>
         <div>
           <label className="block text-md font-medium ">House Age </label>
           <input
-              type="number"
-              name="houseAge"
-              value={formData.houseAge}
-              onChange={handleChange}
-              placeholder='How old is your house? (In years)'
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-              required
+            type="number"
+            name="houseAge"
+            value={formData.houseAge}
+            onChange={handleChange}
+            placeholder="How old is your house? (In years)"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            required
           />
         </div>
-        
+
         <div>
-          <label className="block text-md font-medium ">Carpet Area(in sq. ft.)</label>
+          <label className="block text-md font-medium ">
+            Carpet Area(in sq. ft.)
+          </label>
           <input
-              type="number"
-              name="carpetArea"
-              value={formData.carpetArea}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-              required
+            type="number"
+            name="carpetArea"
+            value={formData.carpetArea}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            required
           />
         </div>
-        
+
         <div>
           <label className="block text-md font-medium ">Rent Type</label>
           <select
-              name="roomFlat"
-              value={formData.roomFlat}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            name="roomFlat"
+            value={formData.roomFlat}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           >
             <option value="room">Room</option>
             <option value="flat">Flat</option>
             <option value="house">House</option>
           </select>
         </div>
-        
+
         <div>
           <label className="block text-md font-medium ">Rent Price</label>
           <input
-              type="number"
-              name="rentPrice"
-              value={formData.rentPrice}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-              required
+            type="number"
+            name="rentPrice"
+            value={formData.rentPrice}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            required
           />
         </div>
-        
+
         <div>
           <label className="block text-md font-medium ">Phone Number</label>
           <input
-              type="number"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
-              required
+            type="number"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            required
           />
         </div>
-        
-        
+
         <div>
           <label className=" text-lg font-medium mb-0">
             Room Images (4 required)
           </label>
           <div className="input-box">
-            <FaRegFileImage className="icon"/>
+            <FaRegFileImage className="icon" />
             <input
-                type="file"
-                accept="image/*"
-                name="image1"
-                className="form-input px-4 py-3 rounded-full text-black"
-                onChange={(e) => handleImageChange(e, "image")}
+              type="file"
+              accept="image/*"
+              name="image1"
+              className="form-input px-4 py-3 rounded-full text-black"
+              onChange={(e) => handleImageChange(e, "image")}
             />
           </div>
           <div className="input-box">
-            <FaRegFileImage className="icon"/>
+            <FaRegFileImage className="icon" />
             <input
-                type="file"
-                accept="image/*"
-                name="image1"
-                className="form-input px-4 py-3 rounded-full text-black"
-                onChange={(e) => handleImageChange(e, "image1")}
+              type="file"
+              accept="image/*"
+              name="image1"
+              className="form-input px-4 py-3 rounded-full text-black"
+              onChange={(e) => handleImageChange(e, "image1")}
             />
           </div>
           <div className="input-box">
-            <FaRegFileImage className="icon"/>
+            <FaRegFileImage className="icon" />
             <input
-                type="file"
-                accept="image/*"
-                name="image1"
-                className="form-input px-4 py-3 rounded-full text-black"
-                onChange={(e) => handleImageChange(e, "image2")}
+              type="file"
+              accept="image/*"
+              name="image1"
+              className="form-input px-4 py-3 rounded-full text-black"
+              onChange={(e) => handleImageChange(e, "image2")}
             />
           </div>
           <div className="input-box">
-            <FaRegFileImage className="icon"/>
+            <FaRegFileImage className="icon" />
             <input
-                type="file"
-                accept="image/*"
-                name="image1"
-                className="form-input px-4 py-3 rounded-full text-black"
-                onChange={(e) => handleImageChange(e, "image3")}
+              type="file"
+              accept="image/*"
+              name="image1"
+              className="form-input px-4 py-3 rounded-full text-black"
+              onChange={(e) => handleImageChange(e, "image3")}
             />
           </div>
         </div>
         <div>
           <label className="block text-md font-medium ">Address</label>
-          
+
           <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           />
         </div>
         <div>
@@ -378,43 +373,43 @@ console.log(formData,'dsfdsf')
         </div>
         <div className="h-64">
           <MapContainer
-              center={position}
-              zoom={15}
-              style={{height: "98%", width: "100%"}}
+            center={position}
+            zoom={15}
+            style={{ height: "98%", width: "100%" }}
           >
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            
-            <LocationMarrker/>
+
+            <LocationMarrker />
             {haveUserLocation && (
-                <Marker position={position}>
-                  <Popup>
-                    <MapCard/>
-                  </Popup>
-                </Marker>
+              <Marker position={position}>
+                <Popup>
+                  <MapCard />
+                </Popup>
+              </Marker>
             )}
           </MapContainer>
         </div>
-        
+
         <div>
           <label className="block text-md font-medium ">Other Details</label>
-          
-          <input
-              type="text"
-              name="otherDetails"
-              value={formData.otherDetails}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+
+          <textarea
+            type="text"
+            name="otherDetails"
+            value={formData.otherDetails}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-black"
           />
         </div>
-        
+
         <div className="flex justify-end mt-5">
           <button
-              onClick={handleSubmit}
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md"
+            onClick={handleSubmit}
+            type="submit"
+            className="px-4 py-2 bg-blue-600 text-white rounded-md"
           >
             Submit
           </button>
