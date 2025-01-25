@@ -90,7 +90,7 @@ const Maps = () => {
     // });
     return null;
   }
-
+  console.log("position is: " + position);
   return (
     <>
       {loading ? (

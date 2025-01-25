@@ -16,16 +16,22 @@ const List = () => {
     dispatch(fetchRoomDetails());
   }, [dispatch]);
 
-  const locationHandler = (latitude, longitude) => {
+  const locationHandler = (latitude, longitude,address) => {
     const coordinates = { latitude, longitude };
-    console.log("Storing coordinates:", coordinates); // Check the coordinates
-    localStorage.setItem("coordinates", JSON.stringify(coordinates));
+    console.log("Storing coordinates:", coordinates,address); // Check the coordinates
+    localStorage.setItem("coordinates", JSON.stringify(coordinates,address));
+    // localStorage.setItem("address", JSON.stringify(address));
 
     // Dispatch action to save coordinates in Redux state
     dispatch({
       type: "SET_COORDINATES",
       payload: coordinates,
     });
+    dispatch({
+      type: "SET_SELECTED_ROOM_ADDRESS",
+      payload: address,
+    });
+    
   };
 
   const handleFilterChange = (event) => {
@@ -94,7 +100,7 @@ const List = () => {
         {filteredRooms.map((room) => (
           <div
             className="card flex outline rounded-md h-1/5 w-[95%] m-2 hover:cursor-pointer"
-            onClick={() => locationHandler(room.longitude, room.latitude)}
+            onClick={() => locationHandler(room.longitude, room.latitude,room.address)}
             key={room.id}
           >
             <div className="Place-name mt-3 flex flex-col ml-2">

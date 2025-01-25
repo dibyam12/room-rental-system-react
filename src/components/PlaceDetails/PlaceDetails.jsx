@@ -34,7 +34,31 @@ const PlaceDetails = () => {
   const roomDetails = useSelector((state) => state.roomDetails);
   const { rooms } = roomDetails;
   const { roomid } = useParams();
-  const room = rooms.find((room) => room.id === Number(roomid));
+  // const room = rooms.find((room) => room.id === Number(roomid));
+
+  const [room, setRoom] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchRoomDetails = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get(`${backendUrl}/rooms/${roomid}/`);
+        setRoom(data);
+      } catch (error) {
+        console.error("Error fetching room details:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const roomFromStore = rooms.find((room) => room.id === Number(roomid));
+    if (roomFromStore) {
+      setRoom(roomFromStore);
+    } else {
+      fetchRoomDetails();
+    }
+  }, [roomid, rooms]);
 
   const generateSignature = (
     transaction_uuid,
@@ -124,43 +148,101 @@ const PlaceDetails = () => {
     }));
   }, [esewaData.total_amount]);
 
+
+  // const images = ["image", "image1", "image2", "image3"].filter((imgKey) => room[imgKey]);
+  const images = room
+    ? ["image", "image1", "image2", "image3"].filter((imgKey) => room[imgKey])
+    : [];
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleNavigation = (index) => {
+    setCurrentSlide(index); // Update the current slide based on button click
+  };
+
+  const handleArrowNavigation = (direction) => {
+    const totalSlides = images.length;
+    if (direction === "prev") {
+      setCurrentSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    } else if (direction === "next") {
+      setCurrentSlide((currentSlide + 1) % totalSlides);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner text-info"></span>
+      </div>
+    );
+  }
+
+
+  if (!room) {
+    return (
+      <div className="flex justify-center items-center h-screen flex-col ">
+        <h1 className="text-2xl font-bold text-gray-700">Room not found</h1>
+        <Link to={'/'}>
+        <button className="h-10 px-6 font-semibold rounded-md border mr-2 hover:text-cyan-600 hover:bg-white    hover:border-cyan-600 text-white bg-cyan-600  ">Goto Home</button>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <>
       {room ? (
         <div className="bg-white text-black p-6 rounded-lg shadow-lg">
           <div className="slider">
-            <div className="carousel w-full h-[80vh] rounded-lg overflow-hidden shadow-md bg-gray-200">
-              {["image", "image1", "image2", "image3"].map(
-                (imgKey, index) =>
-                  room[imgKey] && (
-                    <div
-                      key={imgKey}
-                      className="carousel-item w-full h-full flex justify-center items-center"
-                    >
-                      <img
-                        src={`${backendUrl}/${room[imgKey]}`}
-                        alt={`Room ${index + 1}`}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                  )
-              )}
-            </div>
-            {/* Carousel Navigation */}
-            <div className="flex justify-center gap-2 py-4">
-              {["image", "image1", "image2", "image3"].map(
-                (imgKey, index) =>
-                  room[imgKey] && (
-                    <a
-                      key={imgKey}
-                      href={`#${room[imgKey]}`}
-                      className="btn btn-sm bg-gray-700 text-white hover:bg-gray-800 transition-colors"
-                    >
-                      {index + 1}
-                    </a>
-                  )
-              )}
-            </div>
+          <div className="w-full h-[80vh] rounded-lg overflow-hidden shadow-md bg-gray-200 relative">
+      {/* Carousel Items */}
+      <div className="carousel w-full h-full relative">
+        {images.map((imgKey, index) => (
+          <div
+            key={imgKey}
+            className={`carousel-item w-full h-full flex justify-center items-center ${
+              index === currentSlide ? "block" : "hidden"
+            }`}
+          >
+            <img
+              src={`${backendUrl}/${room[imgKey]}`}
+              alt={`Room ${index + 1}`}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Carousel Navigation */}
+      <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+        {images.map((imgKey, index) => (
+          <button
+            key={imgKey}
+            onClick={() => handleNavigation(index)}
+            className={`btn btn-sm ${
+              index === currentSlide
+                ? "bg-gray-800 text-white"
+                : "bg-gray-700 text-gray-300"
+            } hover:bg-gray-900 transition-colors`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+
+      {/* Arrow Navigation */}
+      <button
+        onClick={() => handleArrowNavigation("prev")}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-900"
+      >
+        &#8592;
+      </button>
+      <button
+        onClick={() => handleArrowNavigation("next")}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-900"
+      >
+        &#8594;
+      </button>
+    </div>
           </div>
 
           {/* Contact Options */}
