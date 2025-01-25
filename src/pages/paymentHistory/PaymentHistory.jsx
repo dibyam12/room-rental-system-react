@@ -12,7 +12,8 @@ const PaymentHistory = () => {
   const { paymentHistory, loading, error } = paymentState;
   const { users } = userList;
   const {rooms} = roomDetails
-  console.log((users.find(user => user.id === 1)).username)
+  console.log(users)
+  // console.log((users.find(user => user.id === 1)).username)
   let count = 0;
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const PaymentHistory = () => {
               const userwithid = users.find((useri) => Number(useri.id) === Number(hist.user));
               const roomwithid = rooms.find((useri) => Number(useri.id) === Number(hist.room))
               const roomOwner = users.find((useri) => Number(useri.id) === Number(roomwithid.user))
+              console.log(userwithid,'ttt')
 
               return (
                 <tr key={hist.transaction_uuid} className="hover cursor-pointer">
@@ -51,10 +53,11 @@ const PaymentHistory = () => {
                   <td>{hist.amount}</td>
                   <td>{new Date(hist.created_at).toString().split(" GMT")[0]}</td>
                   <td>{userwithid ? userwithid.username : "User Not Found"}</td>
-                  <td>{userwithid.email}</td>
-                  <td>{roomwithid.address}</td>
-                  <td>{roomOwner.username}</td>
-                  <td>{roomOwner.profile.phone_number}</td>
+                  <td>{userwithid ? userwithid.email : "User Not Found"}</td>
+                  <td>{roomwithid ? roomwithid.address : "User Not Found"}</td>
+                  <td>{roomOwner ? roomOwner.username : "User Not Found"}</td>
+                  <td>{roomOwner ? roomOwner.profile.phone_number : "User Not Found"}</td>
+                  
                 </tr>
               );
             })}
