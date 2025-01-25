@@ -25,6 +25,7 @@ import ChatDetail from "../components/chatDetail/ChatDetail.jsx";
 import Message from "../components/message/Message.jsx";
 import PaymentSuccess from "../components/paymentSuccess/PaymentSuccess.jsx";
 import PaymentHistory from "../pages/paymentHistory/PaymentHistory.jsx";
+import BookedRooms from "../pages/bookedRooms/BookedRooms.jsx";
 // import EsewaPayment from "../components/esewa/Esewa.jsx";
 
 /////////////////////////////////// 2 ways to use ////////////////////////////////////////////////
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
         element: (
           // <PrivateRoute>
           <MyRooms />
+          // </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myBookedRooms",
+        element: (
+          // <PrivateRoute>
+          <BookedRooms />
           // </PrivateRoute>
         ),
       },

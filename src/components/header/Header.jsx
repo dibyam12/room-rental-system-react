@@ -56,6 +56,13 @@ const Header = () => {
             )}
 
             {/* {(userInfo?.profile?.userType === "Admin" || */}
+            {(  userInfo?.profile?.userType === "Tenant" ) && (
+              <Link to="/myBookedRooms">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  My Rooms
+                </button>
+              </Link>
+            )}
             {(  userInfo?.profile?.userType === "Landlord" ) && (
               <Link to="/myrooms">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
