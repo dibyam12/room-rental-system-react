@@ -23,17 +23,13 @@ const {rooms} = roomDetails
     const myself = user.user
     console.log(rooms,'room')
 const bookedRooms = paymentHistory.filter((room) => Number(room.user) === Number(myself));
+  console.log(bookedRooms,'bookedRooms')
  const final = rooms.filter((room) =>
   bookedRooms.some((bookedRoom) => bookedRoom.room === room.id)
 );
 
 console.log(final,'final');
-//   console.log(bookedRooms,'tete')
 
-//   const myRooms = rooms.filter((room)=>{
-//     const user = ""
-//     room.rented && user
-//   })
     let x = 0
 
  useEffect(() => {

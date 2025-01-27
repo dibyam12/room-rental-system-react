@@ -189,9 +189,9 @@ export const addRooms = (formDatas) => async (dispatch) => {
         const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
 
         
-        if (!token) {
-            throw new Error("No authorization token found");
-        }
+        // if (!token) {
+        //     throw new Error("No authorization token found");
+        // }
 
         const config = {
             headers: {
@@ -202,7 +202,7 @@ export const addRooms = (formDatas) => async (dispatch) => {
 
         
         const { data } = await axios.post(`${backendUrl}/addrooms/`, formDatas, config);
-        
+        console.log('data save')
         dispatch({ type: ADD_ROOM_SUCCESS, payload: data });
     } catch (error) {
         console.error('Error details:', error);

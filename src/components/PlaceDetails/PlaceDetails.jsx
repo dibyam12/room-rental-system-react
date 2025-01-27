@@ -406,15 +406,33 @@ const PlaceDetails = () => {
               value={esewaData.signature}
               required
             />
-            <input
-              type="submit"
-              value="Submit"
-              className="btn bg-gray-700 w-full text-white"
-            />
+           
+            {/*<input*/}
+            {/*  type="submit"*/}
+            {/*  value="Submit"*/}
+            {/*  className="btn bg-gray-700 w-full text-white"*/}
+            {/*/>*/}
+            
+             {token ? (
+                 <input
+                     type="submit"
+                     value="Submit"
+                     className="btn bg-gray-700 w-full text-white"
+                 />
+             ) : (
+                 <input
+                     type="submit"
+                     value="Submit"
+                     disabled
+                     className="btn bg-gray-700 w-full text-white"
+                 />
+             )}
+          
+          
           </form>
         </div>
       ) : (
-        <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center">
           <span className="loading loading-spinner text-info"></span>
         </div>
       )}
