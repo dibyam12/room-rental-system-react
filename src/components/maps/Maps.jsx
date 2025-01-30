@@ -103,7 +103,7 @@ const Maps = () => {
           center={position}
           zoom={zoom}
           scrollWheelZoom={true}
-          style={{ height: "89.5vh", width: "100%" }}
+          style={{ height: "100vh", width: "100%" }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
