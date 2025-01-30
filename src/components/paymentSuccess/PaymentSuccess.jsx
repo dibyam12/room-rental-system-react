@@ -54,12 +54,26 @@ const PaymentSuccess = () => {
     "I have rented your room and will visit you soon."
   )}`
 );
+
+
+    // Force a reload after navigation
+    setTimeout(() => {
+      window.location.reload();
+    }, 500); // Small delay to ensure navigation happens first
+
+
     } catch (error) {
      navigate(
   `/message/${room_seller}/?m=${encodeURIComponent(
     "I have rented your room and will visit you soon."
   )}`
 );
+
+
+    // Force a reload after navigation
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
       console.log("error");
     
     }
