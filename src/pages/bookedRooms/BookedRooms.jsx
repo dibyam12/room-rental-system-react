@@ -21,7 +21,7 @@ const {rooms} = roomDetails
     
     
     const myself = user.user
-    console.log(rooms,'room')
+    console.log(rooms,'this is room 123')
 const bookedRooms = paymentHistory.filter((room) => Number(room.user) === Number(myself));
   console.log(bookedRooms,'bookedRooms')
  const final = rooms.filter((room) =>
