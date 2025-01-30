@@ -41,11 +41,11 @@ const Header = () => {
                   All Users
                 </button>
               </Link>
-              <Link to="/paymenthistory">
+              {/* <Link to="/paymenthistory">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Payment History
                 </button>
-              </Link>
+              </Link> */}
               <Link to="/">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Rooms
@@ -54,6 +54,11 @@ const Header = () => {
               </>
               
             )}
+            <Link to="/paymenthistory">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  Payment History
+                </button>
+              </Link>
 
             {/* {(userInfo?.profile?.userType === "Admin" || */}
             {(  userInfo?.profile?.userType === "Tenant" ) && (
@@ -64,11 +69,18 @@ const Header = () => {
               </Link>
             )}
             {(  userInfo?.profile?.userType === "Landlord" ) && (
+              <>
               <Link to="/myrooms">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                  My Rooms
+                  My Listed Rooms
                 </button>
               </Link>
+              <Link to="/myBookedRooms">
+                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
+                  My Booked Rooms
+                </button>
+              </Link>
+              </>
             )}
 
             {(userInfo?.profile?.userType === "Landlord" || userInfo?.profile?.userType === "Tenant") && (

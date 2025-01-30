@@ -296,30 +296,39 @@ const PlaceDetails = () => {
 
           <form onSubmit={handleRent}>
             <div className="flex flex-col gap-4">
-              <div>
-                <label htmlFor="rent-from" className="text-lg font-bold">
-                  Rent From:
-                </label>
-                <input
-                  id="rent-from"
-                  type="date"
-                  value={rentFrom}
-                  onChange={(e) => setRentFrom(e.target.value)}
-                  className="input w-[50%] ml-3 p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring focus:ring-gray-200"
-                />
-              </div>
-              <div>
-                <label htmlFor="rent-to" className="font-bold text-lg">
-                  Rent To:
-                </label>
-                <input
-                  id="rent-to"
-                  type="date"
-                  value={rentTo}
-                  onChange={(e) => setRentTo(e.target.value)}
-                  className="input w-[50%] ml-3 p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring focus:ring-gray-200"
-                />
-              </div>
+            <div>
+  <label htmlFor="rent-from" className="text-lg font-bold">
+    Rent From:
+  </label>
+  <input
+    id="rent-from"
+    type="date"
+    value={rentFrom}
+    onChange={(e) => setRentFrom(e.target.value)}
+    min={new Date().toISOString().split("T")[0]} // Disables past dates
+    className="input w-[50%] ml-3 p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring focus:ring-gray-200"
+  />
+</div>
+
+<div>
+  <label htmlFor="rent-to" className="font-bold text-lg">
+    Rent To:
+  </label>
+  <input
+    id="rent-to"
+    type="date"
+    value={rentTo}
+    onChange={(e) => setRentTo(e.target.value)}
+    min={
+      rentFrom
+        ? new Date(new Date(rentFrom).setDate(new Date(rentFrom).getDate() + 31))
+            .toISOString()
+            .split("T")[0] // Disables 30 days from Rent From
+        : new Date().toISOString().split("T")[0]
+    }
+    className="input w-[50%] ml-3 p-3 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring focus:ring-gray-200"
+  />
+</div>
               <button
                 type="submit"
                 className="btn bg-gray-700 w-full text-white hidden"
