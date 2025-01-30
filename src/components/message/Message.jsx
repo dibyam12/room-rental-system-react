@@ -82,10 +82,24 @@ const MessageComponent = () => {
         
       navigate(`/message/${receiverId}`)
         console.log('nabigation hahahaha')
+
+        
+    // Force a reload after navigation
+    setTimeout(() => {
+      window.location.reload();
+    }, 500); // Small delay to ensure navigation happens first
+
       } catch (error) {
         console.error("Error sending message:", error);
         navigate(`/message/${receiverId}`)
         console.log('nabigation hahahaha')
+
+        
+    // Force a reload after navigation
+    setTimeout(() => {
+      window.location.reload();
+    }, 500); // Small delay to ensure navigation happens first
+
       }
     }
   };

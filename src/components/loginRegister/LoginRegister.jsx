@@ -116,10 +116,10 @@ const LoginRegister = () => {
                   onChange={(e) => setLoginPassword(e.target.value)}
                 />
               </div>
-              <div className="forgot ">
+              {/* <div className="forgot ">
                 {" "}
                 <a href="#">Forgot password?</a>
-              </div>
+              </div> */}
               <button
                 className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900"
                 type="submit"
