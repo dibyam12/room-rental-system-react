@@ -25,7 +25,7 @@ const {rooms} = roomDetails
 const bookedRooms = paymentHistory.filter((room) => Number(room.user) === Number(myself));
   console.log(bookedRooms,'bookedRooms')
  const final = rooms.filter((room) =>
-  bookedRooms.some((bookedRoom) => bookedRoom.room === room.id)
+  bookedRooms.some((bookedRoom) => bookedRoom.room === room.id && room.rented === true)
 );
 
 console.log(final,'final');
@@ -35,6 +35,7 @@ const handleRemoveBookedRoom = (roomId) => {
   dispatch(removeBookedRoom(roomId));
   dispatch(fetchRoomDetail());
     dispatch(fetchRoomDetails());
+    dispatch(fetchPaymentDetails());
   
 
   setTimeout(() => {
