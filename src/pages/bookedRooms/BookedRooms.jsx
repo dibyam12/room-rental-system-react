@@ -33,6 +33,9 @@ console.log(final,'final');
 
 const handleRemoveBookedRoom = (roomId) => {
   dispatch(removeBookedRoom(roomId));
+  dispatch(fetchRoomDetail());
+    dispatch(fetchRoomDetails());
+  
 
   setTimeout(() => {
     window.location.reload();
