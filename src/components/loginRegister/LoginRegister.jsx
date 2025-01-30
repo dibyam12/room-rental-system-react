@@ -4,12 +4,18 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { IoCall } from "react-icons/io5";
 import "./loginRegister.css";
+<<<<<<< HEAD
 import {useState, useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {login, register} from "../../actions/userActions.jsx";
 import {useNavigate} from "react-router-dom";
 // import { AuthContext } from "../context/AuthContext";
 // import AuthContext from "../../context/AuthContext";
+=======
+import { useState, useContext } from "react";
+// import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
 
 const LoginRegister = () => {
   // const dispatch = useDispatch()
@@ -28,6 +34,7 @@ const LoginRegister = () => {
   // const [action, setAction] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+<<<<<<< HEAD
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState()
@@ -67,10 +74,28 @@ const LoginRegister = () => {
     dispatch(login(loginUsername, loginPassword));
     console.log("submitted");
 
+=======
+  const [registerData, setRegisterData] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    username: "",
+    password: "",
+    password2: "",
+    role: "",
+  });
+
+  const { loginUser, registerUser } = useContext(AuthContext);
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    loginUser(loginUsername, loginPassword);
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
   };
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     if (password != confirmPassword) {
       setMessage("Passwords do not match")
     } else {
@@ -79,6 +104,14 @@ const LoginRegister = () => {
       navigate('/')
     }
     
+=======
+    registerUser(
+      registerData.email,
+      registerData.username,
+      registerData.password,
+      registerData.password2
+    );
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
   };
 
   const handleChange = (e) => {
@@ -150,8 +183,13 @@ const LoginRegister = () => {
                   name="fullName"
                   placeholder="Full Name"
                   className="form-input px-4 py-3 rounded-full"
+<<<<<<< HEAD
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+=======
+                  value={registerData.fullName}
+                  onChange={handleChange}
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
                 />
               </div>
               <div className="input-box">
@@ -162,8 +200,13 @@ const LoginRegister = () => {
                   name="email"
                   placeholder="E-mail"
                   className="form-input px-4 py-3 rounded-full"
+<<<<<<< HEAD
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+=======
+                  value={registerData.email}
+                  onChange={handleChange}
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
                 />
               </div>
               <div className="input-box">
@@ -174,8 +217,13 @@ const LoginRegister = () => {
                   name="phoneNumber"
                   placeholder="Phone Number"
                   className="form-input px-4 py-3 rounded-full"
+<<<<<<< HEAD
                   value={phone_number}
                   onChange={(e) => setPhone_number(e.target.value)}
+=======
+                  value={registerData.phoneNumber}
+                  onChange={handleChange}
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
                 />
               </div>
               <div className="input-box">
@@ -186,8 +234,13 @@ const LoginRegister = () => {
                   name="username"
                   placeholder="Username"
                   className="form-input px-4 py-3 rounded-full"
+<<<<<<< HEAD
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+=======
+                  value={registerData.username}
+                  onChange={handleChange}
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
                 />
               </div>
               <div className="input-box">
@@ -198,8 +251,13 @@ const LoginRegister = () => {
                   name="password"
                   placeholder="Password"
                   className="form-input px-4 py-3 rounded-full"
+<<<<<<< HEAD
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+=======
+                  value={registerData.password}
+                  onChange={handleChange}
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
                 />
               </div>
               <div className="input-box">
@@ -210,8 +268,13 @@ const LoginRegister = () => {
                   name="password2"
                   placeholder="Confirm Password"
                   className="form-input px-4 py-3 rounded-full"
+<<<<<<< HEAD
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+=======
+                  value={registerData.password2}
+                  onChange={handleChange}
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
                 />
               </div>
               <div className="landlord-tenant">
@@ -220,11 +283,19 @@ const LoginRegister = () => {
                 <select
                   id="details"
                   name="role"
+<<<<<<< HEAD
                   value={userType}
                   onChange={(e) => setUserType(e.target.value)}
                   required
                 >
                   <option value="Landlord">Landlord</option>
+=======
+                  value={registerData.role}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="Laandlord">Landlord</option>
+>>>>>>> c47b71d8c99dec64f2636fe382e951325752dc3b
                   <option value="Tenant">Tenant</option>
                 </select>
               </div>
