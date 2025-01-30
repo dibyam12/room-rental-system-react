@@ -1,6 +1,6 @@
 import { useEffect,} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import {fetchRoomDetail, fetchRoomDetails} from '../../actions/roomActions';
+import {fetchRoomDetail, fetchRoomDetails, removeBookedRoom} from '../../actions/roomActions';
 import { backendUrl } from '../../constants/userConstants';
 import {fetchRegistrationDetail} from "../../actions/userActions.jsx";
 import {fetchPaymentDetails} from "../paymentHistory/PaymentAction.jsx";
@@ -30,8 +30,17 @@ const bookedRooms = paymentHistory.filter((room) => Number(room.user) === Number
 
 console.log(final,'final');
 
-    let x = 0
 
+const handleRemoveBookedRoom = (roomId) => {
+  dispatch(removeBookedRoom(roomId));
+
+  setTimeout(() => {
+    window.location.reload();
+  }, 800); 
+
+
+};
+ let x=0;
  useEffect(() => {
     dispatch(fetchRoomDetail());
     dispatch(fetchRoomDetails());
@@ -127,7 +136,7 @@ console.log(final,'final');
                 </form>
                 <h3 className="font-bold text-lg">Are you sure you want to remove this rented room </h3>
                 <p className='m-3'><strong>NOTE:</strong> The money  will <strong>NOT</strong> be refunded and will be again listed for public</p>
-                <button className="btn m-2 bg-red-600 text-white" >
+                <button className="btn m-2 bg-red-600 text-white" onClick={() => handleRemoveBookedRoom(room.id)}>
                           Yes, Remove
                         </button>
                         <button className="btn m-2 bg-cyan-600 text-white" onClick={() => document.getElementById("my_modal_3").close()}>

@@ -1,17 +1,28 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRoomDetail } from "../../actions/roomActions.jsx";
+import { fetchRoomDetail,removeRoom  } from "../../actions/roomActions.jsx";
 import { backendUrl } from "../../constants/userConstants.jsx";
 const MyRooms = () => {
   const dispatch = useDispatch();
   let x = 0;
   const { rooms, loading, error } = useSelector((state) => state.roomDetail);
+  const handleRemoveRoom = (roomId) => {
+    dispatch(removeRoom(roomId));
 
+    setTimeout(() => {
+      window.location.reload();
+    }, 500); // Small delay to ensure navigation happens first
+  
+  
+};
   console.log(rooms, "room");
   // console.log(roomDetails)
   useEffect(() => {
     dispatch(fetchRoomDetail());
+
   }, [dispatch]);
+
+
   return (
     <>
       {/* {rooms && rooms.length > 0? (
@@ -121,9 +132,10 @@ const MyRooms = () => {
                     </div>
                   </td>
                   <td>
-                    <button className="btn bg-red-600 text-white" onClick={() => document.getElementById("my_modal_3").showModal()}>
+                    {room?.is_shared ? <> </>: <> <button className="btn bg-red-600 text-white" onClick={() => document.getElementById("my_modal_3").showModal()}>
                       Remove
-                    </button>
+                    </button></>}
+                    
                     <dialog id="my_modal_3" className="modal">
               <div className="modal-box">
                 <form method="dialog">
@@ -134,7 +146,7 @@ const MyRooms = () => {
                 </form>
                 <h3 className="font-bold text-lg">Are you sure you want to remove this listed room </h3>
                 <p className='m-3'><strong>NOTE:</strong> You will have to add room again and this will be removed from the listings.</p>
-                <button className="btn m-2 bg-red-600 text-white" >
+                <button className="btn m-2 bg-red-600 text-white" onClick={() => handleRemoveRoom(room.id)}>
                           Yes, Remove
                         </button>
                         <button className="btn m-2 bg-cyan-600 text-white" onClick={() => document.getElementById("my_modal_3").close()}>
@@ -357,15 +369,12 @@ const MyRooms = () => {
                           </div>
                         </td>
                         <td>
-                          <button className="btn bg-cyan-600 text-white">
-                            Share
-                          </button>
                         </td>
                       </tr>
                     ))}
                 </>
               ) : (
-                <div className="text-center"> No Unshared rooms </div>
+                <div className="text-center"> No Rented rooms </div>
               )}
             </tbody>
           </table>

@@ -282,7 +282,7 @@ const PlaceDetails = () => {
                 <h3 className="text-3xl font-bold mb-2">Address</h3>
                 <p className="text-xl">{room.address}</p>
                 <p className="text-xl font-semibold mt-2">
-                  Rent: Rs.{room.rent}
+                  Rent: Rs.{room.rent} (per day)
                 </p>
                 <p className="text-xl mt-2">Bathroom: {room.bathroom}</p>
               </div>

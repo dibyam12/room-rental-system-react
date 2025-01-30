@@ -5,6 +5,12 @@ import {
   ROOM_DETAILS_FAIL,
   ROOM_DETAILS_REQUEST,
   ROOM_DETAILS_SUCCESS,
+  REMOVE_ROOM_REQUEST,
+  REMOVE_ROOM_SUCCESS,
+  REMOVE_ROOM_FAIL,
+  REMOVE_BOOKED_ROOM_REQUEST,
+  REMOVE_BOOKED_ROOM_SUCCESS,
+  REMOVE_BOOKED_ROOM_FAIL
 } from "../constants/userConstants.jsx";
 
 import axios from "axios";
@@ -69,3 +75,51 @@ export const setRoomAddress = (address) => ({
   type: SET_SELECTED_ROOM_ADDRESS,
   payload: address,
 });
+
+
+export const removeRoom = (roomId) => async (dispatch) => {
+  try {
+      dispatch({ type: REMOVE_ROOM_REQUEST });
+
+      const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
+
+      const config = {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      };
+
+      await axios.delete(`${backendUrl}/removerooms/${roomId}/`, config);
+
+      dispatch({ type: REMOVE_ROOM_SUCCESS, payload: roomId });
+  } catch (error) {
+      dispatch({
+          type: REMOVE_ROOM_FAIL,
+          payload: error.response?.data?.detail || error.message,
+      });
+  }
+};
+
+
+export const removeBookedRoom = (roomId) => async (dispatch) => {
+  try {
+      dispatch({ type: REMOVE_BOOKED_ROOM_REQUEST });
+
+      const token = JSON.parse(localStorage.getItem("userInfo"))?.access;
+
+      const config = {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      };
+
+      await axios.delete(`${backendUrl}/removebookedroom/${roomId}/`, config);
+
+      dispatch({ type: REMOVE_BOOKED_ROOM_SUCCESS, payload: roomId });
+  } catch (error) {
+      dispatch({
+          type: REMOVE_BOOKED_ROOM_FAIL,
+          payload: error.response?.data?.detail || error.message,
+      });
+  }
+};

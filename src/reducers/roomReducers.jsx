@@ -1,6 +1,12 @@
 import {
     ADD_ROOM_FAIL,
     ADD_ROOM_REQUEST, ADD_ROOM_SUCCESS,
+    REMOVE_BOOKED_ROOM_FAIL,
+    REMOVE_BOOKED_ROOM_REQUEST,
+    REMOVE_BOOKED_ROOM_SUCCESS,
+    REMOVE_ROOM_FAIL,
+    REMOVE_ROOM_REQUEST,
+    REMOVE_ROOM_SUCCESS,
     ROOM_DETAIL_FAIL,
     ROOM_DETAIL_REQUEST,
     ROOM_DETAIL_SUCCESS, ROOM_DETAILS_FAIL, ROOM_DETAILS_REQUEST, ROOM_DETAILS_SUCCESS,
@@ -25,6 +31,27 @@ export const roomDetailReducer = (state = initialState, action) => {
         case ROOM_DETAIL_SUCCESS:
             return { ...state, loading: false, rooms: action.payload };
         case ROOM_DETAIL_FAIL:
+            return { ...state, loading: false, error: action.payload };
+            case REMOVE_ROOM_REQUEST:
+            return { ...state, loading: true };
+        case REMOVE_ROOM_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                rooms: state.rooms.filter(room => room.id !== action.payload),
+            };
+        case REMOVE_ROOM_FAIL:
+            return { ...state, loading: false, error: action.payload };
+
+        case REMOVE_BOOKED_ROOM_REQUEST:
+            return { ...state, loading: true };
+        case REMOVE_BOOKED_ROOM_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                rooms: state.rooms.filter(room => room.id !== action.payload),
+            };
+        case REMOVE_BOOKED_ROOM_FAIL:
             return { ...state, loading: false, error: action.payload };
         default:
             return state;

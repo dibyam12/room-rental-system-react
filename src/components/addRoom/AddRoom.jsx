@@ -102,6 +102,11 @@ const AddRoom = () => {
     }
     dispatch(addRooms(formDatas));
     navigate("/");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 500); // Small delay to ensure navigation happens first
+
   };
 
   const handleGeolocationSuccess = useCallback((pos) => {
@@ -287,7 +292,7 @@ const AddRoom = () => {
         </div>
 
         <div>
-          <label className="block text-md font-medium ">Rent Price</label>
+          <label className="block text-md font-medium ">Rent Price \Per-day</label>
           <input
             type="number"
             name="rentPrice"
