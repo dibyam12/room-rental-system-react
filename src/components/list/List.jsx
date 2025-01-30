@@ -63,13 +63,13 @@ const List = () => {
         <input
           placeholder="Search address"
           type="text"
-          className="searchBar w-[80%] p-2 text-black outline rounded-full"
+          className="searchBar w-[100%] p-2 text-black outline rounded-full"
           value={searchTerm} // Bind search input value to state
           onChange={handleSearchChange} // Handle search input change
         />
-        <button className="bg-cyan-600 font-semi-old border text-white p-2 ml-1 hover:bg-white rounded-full border-white hover:text-cyan-600 hover:outline-none">
+        {/* <button className="bg-cyan-600 font-semi-old border text-white p-2 ml-1 hover:bg-white rounded-full border-white hover:text-cyan-600 hover:outline-none">
           <FaSearch className="text-xl" />
-        </button>
+        </button> */}
       </div>
       <div className="filter inline-flex items-center text-base hover:cursor-pointer mb-2">
         <div className="dropdown">

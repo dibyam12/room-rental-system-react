@@ -80,21 +80,21 @@ const Maps = () => {
 
   // Custom component to handle map click events and update marker position
   function LocationMarker() {
-    // useMapEvents({
+    useMapEvents({
     //   click(e) {
     //     const { lat, lng } = e.latlng;
     //     console.log(`Clicked coordinates: Latitude: ${lat}, Longitude: ${lng}`);
     //     setPosition({ lat, lng });
     //     setHaveUserLocation(true);
     //   },
-    // });
+    });
     return null;
   }
   console.log("position is: " + position);
   return (
     <>
       {loading ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-opacity-75">
+        <div className=" flex items-center justify-center bg-opacity-75">
           <span className="loading loading-spinner text-info"></span>
         </div>
       ) : (

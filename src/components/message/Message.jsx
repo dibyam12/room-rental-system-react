@@ -44,7 +44,10 @@ const MessageComponent = () => {
     loading,
     error,
   } = useSelector((state) => state.chat);
-  
+  //
+
+  //
+
   useEffect(() => {
     dispatch(fetchRegistrationDetail());
   }, [dispatch]);
@@ -262,7 +265,7 @@ const MessageComponent = () => {
     //           )}
     //         </div>
     //       </div>
-    //     </div>
+    //     </div> 
     //   </div>
     // </div>
 

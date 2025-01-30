@@ -66,30 +66,30 @@ export const addRoomReducer = (state = initialState, action) => {
 
 
 
-
-
-import {SET_COORDINATES, SET_SELECTED_ROOM_ADDRESS} from "../actions/roomActions.jsx";
+import { SET_COORDINATES, SET_SELECTED_ROOM_ADDRESS } from "../actions/roomActions";
 
 const locationState = {
-    longitude: null,
-    latitude: null,
-    address: null,
+  longitude: null,
+  latitude: null,
+  address: "Fetching location...",
 };
 
-
 const coordinateReducer = (state = locationState, action) => {
-    switch (action.type) {
-        case SET_COORDINATES:
-            return {
-                ...state,
-                longitude: action.payload.longitude,
-                latitude: action.payload.latitude,
-            };
-            case SET_SELECTED_ROOM_ADDRESS:
-                return { ...state,  address: action.payload.address }; // Update address
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case SET_COORDINATES:
+      return {
+        ...state,
+        longitude: action.payload.longitude,
+        latitude: action.payload.latitude,
+      };
+    case SET_SELECTED_ROOM_ADDRESS:
+      return {
+        ...state,
+        address: action.payload,
+      };
+    default:
+      return state;
+  }
 };
 
 export default coordinateReducer;
