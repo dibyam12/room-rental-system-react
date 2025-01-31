@@ -129,10 +129,10 @@ export const register =
         payload: data,
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      dispatch({
-        type: USER_LOGIN_SUCCESS,
-        payload: data,
-      });
+      // dispatch({
+      //   type: USER_LOGIN_SUCCESS,
+      //   payload: data,
+      // });
 
     } catch (error) {
       dispatch({

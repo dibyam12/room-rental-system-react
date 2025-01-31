@@ -31,12 +31,12 @@ const Profile = () => {
       <div className="card bg-base-100 w-96 shadow-xl">
         <div className="bg-cyan-600 h-60 flex justify-center items-center ">
           <div className="w-[206px] h-[206px] rounded-full overflow-hidden outline outline-white outline-8 top-[25px] relative ">
-            {userInfo.passportPhoto ? (
+            {user?.passportPhoto ? (
               <>
                 {" "}
                 <img
                   className="w-full h-full"
-                  src={`${backendUrl}/${user.citizenshipFront}`}
+                  src={`${backendUrl}/${user?.passportPhoto}`}
                   // src={userInfo.passportPhoto}
                   alt="Shoes"
                 />
@@ -49,7 +49,7 @@ const Profile = () => {
             )}
             <img
               className="w-full h-full"
-              src={`${backendUrl}/${user.passportPhoto}`}
+              src={`${backendUrl}${userInfo?.registerVerify?.passportPhoto}`}
               alt="Shoes"
             />
           </div>

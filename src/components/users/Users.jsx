@@ -66,12 +66,12 @@ const Users = () => {
       <div className="card bg-base-100 w-full shadow-xl p-3 mb-10">
         <div className="bg-cyan-600 h-60 flex justify-end items-center ">
           <div className="w-[206px] h-[206px] rounded-full overflow-hidden outline outline-white outline-8 top-[35px] mr-8 relative ">
-            {userMain.image ? (
+            {userMain?.registerVerify?.passportPhoto ? (
               <>
                 {" "}
                 <img
                   className="w-full h-full"
-                  src={userMain.profile_image}
+                  src={`${backendUrl}${userMain?.registerVerify?.passportPhoto}`}
                   alt="Shoes"
                 />
               </>
@@ -122,7 +122,7 @@ const Users = () => {
                 <div className=" w-[20%] h-[20%] overflow-hidden ml-[20%]  rounded-box">
                   <img
                     className="w-full h-full object-cover"
-                    src={`${backendUrl}/${userMain?.registerVerify?.passportPhoto}`}
+                    src={`${backendUrl}${userMain?.registerVerify?.passportPhoto}`}
                   />
                 </div>
               </>

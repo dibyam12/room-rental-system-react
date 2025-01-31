@@ -41,24 +41,20 @@ const Header = () => {
                   All Users
                 </button>
               </Link>
-              {/* <Link to="/paymenthistory">
+              <Link to="/paymenthistory">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Payment History
                 </button>
-              </Link> */}
-              <Link to="/">
+              </Link>
+              {/* <Link to="/">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Rooms
                 </button>
-              </Link>
+              </Link> */}
               </>
               
             )}
-            <Link to="/paymenthistory">
-                <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                  Payment History
-                </button>
-              </Link>
+            
 
             {/* {(userInfo?.profile?.userType === "Admin" || */}
             {(  userInfo?.profile?.userType === "Tenant" ) && (
@@ -72,23 +68,28 @@ const Header = () => {
               <>
               <Link to="/myrooms">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                  My Listed Rooms
+                   Listed Rooms
                 </button>
               </Link>
               <Link to="/myBookedRooms">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
-                  My Booked Rooms
+                   Booked Rooms
                 </button>
               </Link>
+            
               </>
             )}
 
             {(userInfo?.profile?.userType === "Landlord" || userInfo?.profile?.userType === "Tenant") && (
+            <>
+            
               <Link to="/message/1">
                 <button className="h-10 px-6 font-semibold rounded-md border mr-2 text-white border-slate-200 hover:bg-white hover:text-cyan-600  ">
                   Message
                 </button>
               </Link>
+            </>
+              
             )}
             {/* {(userInfo?.profile?.userType === "Landlord" || */}
               {(userInfo?.profile?.userType === "Landlord") && (
